@@ -76,7 +76,7 @@
                 </li>
                 <!-- Nav Item - penjadwalan -->
                 <li class="nav-item">
-                    <a class="nav-link" href="{{'/jadwal'}}">
+                    <a class="nav-link" href="{{ route('kegiatan.index') }}">
                         <i class="far fa-calendar-alt"></i>
                         <span>Jadwal</span></a>
                 </li>

@@ -1,13 +1,8 @@
 <x-app-layout>
-    <form action="{{ url('/kelas/' . $kelas->id) }}" method="POST">
-        @method('POST')
+    <form action="{{ URL('kelas.update' . $kelas->id) }}" method="POST">
+        @method('PATCH')
         @csrf
-        <input placeholder="Nama kelas" value="{{ $kelas->nama }}" name="nama" id="nama"/>
-        <select name="jurusan_id">
-            <?php foreach ($jurusan as $j): ?>
-                <option value="{{ $j->id }}" @if($kelas->jurusan && $kelas->jurusan->id == $j->id) selected @endif>{{ $j->nama }}</option>
-            <?php endforeach; ?>
-        </select>
+        <input placeholder="Nama kelas" value="{{ $kelas->nama }}" name="nama" id="nama"  onfocus="this.oldvalue = this.value;" onchange="onChangeTest(this);this.oldvalue = this.value;"  />
         <button type="submit">Perbarui</button>
     </form>
 </x-app-layout>

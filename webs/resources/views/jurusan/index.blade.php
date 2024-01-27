@@ -4,7 +4,7 @@
             <h4 class="text-bold">Jurusan</h4>
             <div class="card shadow mb-4">
                 <div class="card-header py-3">
-                    <a class="btn btn-success" href="{{ route('jurusan.create') }}">Tambah</a> 
+                    <a class="btn btn-success" href="{{ route('jurusan.create') }}">+Tambah</a> 
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
@@ -25,13 +25,12 @@
                                     <td><?= $no ?></td>
                                     <td><?= $j['nama'] ?></td>
                                     <td>
-                                        <a class="btn btn-warning  btn-sm" href="{{ route("jurusan.edit", $j) }}">Edit</a>
-                                        <a class="btn btn-danger  btn-sm" href="#" data-bs-toggle="modal" data-bs-target="#deleteModal{{$j->id}}">Hapus</a>
-
-                                        <div class="modal fade" id="deleteModal{{$j->id}}" tabindex="-1" aria-labelledby="deleteModalLabel{{$j->id}}" aria-hidden="true">
-                                            <!-- Konten modal konfirmasi penghapusan -->
-                                        </div>
-
+                                        <a class="btn btn-warning  btn-sm" value="" href="{{ route("jurusan.edit", $j->id) }}">Edit</a>
+                                        <form action="{{ route("jurusan.destroy", $j->id) }}" method="POST">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" class="btn btn-danger btn-sm">Hapus</button>
+                                        </form>
                                     </td>
                                 </tr>
                                 <?php $no++; ?>

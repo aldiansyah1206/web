@@ -4,7 +4,7 @@
             <h4 class="text-bold">Data Siswa</h4>
             <div class="card shadow mb-4">
                 <div class="card-header py-3">
-                    <a class="btn btn-success"  href=" {{ route("siswa.create")  }}">Tambah</a>
+                    <a class="btn btn-success"  href=" {{ route("siswa.create") }}">Tambah</a>
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
@@ -13,7 +13,6 @@
                                 <tr>
                                     <th scope="col"class="text-center">No</th>
                                     <th scope="col">Nama </th>
-                                    <th scope="col">Nama lengkap</th>
                                     <th scope="col">Email</th> </th>
                                     <th scope="col">Kelas</th>
                                     <th scope="col">Jurusan</th>
@@ -30,16 +29,15 @@
                                     <tr>
                                         <td><?= $no; ?></td>
                                         <td><?= $s['nama']; ?></td>
-                                        <td><?= $s['nama_lengkap']; ?></td>
                                         <td><?= $s['email']; ?></td>
-                                        <td><?= $s['kelas']; ?></td>
-                                        <td><?= $s['jurusan']; ?></td>
+                                        <td><?= $s->kelas->nama; ?></td>
+                                        <td><?= $s->kelas->jurusan->nama; ?></td>
                                         <td><?= $s['jenis_kelamin']; ?></td>
                                         <td><?= $s['alamat']; ?></td>
                                         <td> 
                                         <a href="{{"siswa/profil" }}" class="btn btn-primary  btn-sm">Lihat</a> 
-                                        <a class="btn btn-warning btn-sm ">Edit</a> 
-                                        <a class="btn btn-danger btn-sm">Hapus</a>
+                                        <a class="btn btn-warning btn-smb" href="{{ route("siswa.edit", $s) }}">Edit</a> 
+                                        <a class="btn btn-danger btn-sm" href="{{ route('siswa.destroy', $s->id) }}">Hapus</a>
                                         </td>
                                     </tr>
                                     <?php $no++; ?>

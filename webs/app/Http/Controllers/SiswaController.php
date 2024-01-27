@@ -1,7 +1,8 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Models\Jurusan;
+use App\Models\kelas;
 use App\Models\Siswa;
 use Illuminate\Http\Request;
 
@@ -12,8 +13,8 @@ class SiswaController extends Controller
      */
     public function index()
     {
-        $siswa = Siswa::orderBy('nama')->paginate(3);
-
+        $siswa = siswa::with(["jurusan"])->orderBy('nama')->paginate(6);
+        $siswa = siswa::with(["kelas"])->orderBy('nama')->paginate(6);
         return view('siswa.index', [ "siswa" => $siswa]);
     }
 
@@ -22,7 +23,12 @@ class SiswaController extends Controller
      */
     public function create()
     {
-        return view('siswa.create');
+        $jurusan = Jurusan::All();
+        $kelas = Kelas::All();
+        return view('siswa.create', [
+            "jurusan" => $jurusan,
+            "kelas" => $kelas
+        ]);
     }
 
     /**
@@ -32,6 +38,12 @@ class SiswaController extends Controller
     {
         $siswa = new Siswa;
         $siswa->nama = $request->nama;
+        $siswa->nama_lengkap = $request->nama_lengkap;
+        $siswa->email = $request->email;
+        $siswa->password = $request->password;
+        $siswa->kelas_id = $request->kelas_id;
+        $siswa->jurusan_id = $request->jurusan_id;
+        $siswa->alamat = $request->alamat ?? '';
         $siswa->save();
 
         return redirect()->route('siswa.index');
@@ -66,8 +78,11 @@ class SiswaController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Siswa $siswa)
+    public function destroy(Siswa $siswa, $id)
     {
-        //
+        $siswa = Siswa::findOrFail($id);
+        $siswa->delete();
+    
+        return redirect()->route('siswa.index')->with('success', 'Data berhasil dihapus.');
     }
 }

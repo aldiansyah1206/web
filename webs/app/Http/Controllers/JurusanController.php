@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use App\Models\Jurusan;
 use Illuminate\Http\Request;
 use Illuminate\Http\RedirectResponse;
@@ -12,7 +13,7 @@ class JurusanController extends Controller
      */
     public function index()
     {
-        $jurusan = Jurusan::orderBy ('nama')->paginate(10);
+        $jurusan = Jurusan::orderBy ('nama')->paginate(5);
 
         return view('jurusan.index', [ "jurusan" => $jurusan ]);
     }
@@ -63,20 +64,17 @@ class JurusanController extends Controller
         $jurusan->nama = $request->nama;
         $jurusan->save();
 
-        return redirect()->route('jurusan.index');
+        return redirect()->route('jurusan.index')->with(['success' => 'Data Berhasil Diupdate']);;
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy($id): RedirectResponse
+    public function destroy(int $id)
     {
-         //get jurusan by ID
-         $jurusan = Jurusan::findOrFail($id);
-         //delete kelas
-         $jurusan->delete();
- 
-         //redirect to index
-         return redirect()->route('jurusan.index')->with(['success' => 'Data Berhasil Dihapus!']);
+        $jurusan = Jurusan::findOrFail($id);
+        $jurusan->delete();
+    
+        return redirect()->route("jurusan.index")->with("success", "Jurusan berhasil dihapus.");
     }
 }

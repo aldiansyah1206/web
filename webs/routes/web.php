@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\JurusanController;
+use App\Http\Controllers\KegiatanController;
 use App\Http\Controllers\KelasController;
 use App\Http\Controllers\SiswaController;
 use Illuminate\Support\Facades\Route;
@@ -44,9 +45,13 @@ Route::get('/presensi', function () {
     return view('presensi/index');
 })->middleware(['auth', 'verified'])->name('presensi');
 
-Route::get('/jadwal', function () {
-    return view('jadwal/index');
-})->middleware(['auth', 'verified'])->name('jadwal');
+Route::get('/kegiatan', function () {
+    return view('kegiatan/index');
+})->middleware(['auth', 'verified'])->name('kegiatan');
+
+Route::resource('kegiatan', KegiatanController::class)->middleware(['auth'])->names('kegiatan');
+
+
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -54,10 +59,16 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-Route::resource('jurusan', JurusanController::class)->middleware(['auth']);
+Route::resource('jurusan', JurusanController::class)->only(['index', 'create', 'store', 'edit', 'update', 'delete']);
+Route::delete("jurusan/{id}/delete", [JurusanController::class, "delete"])->name("jurusan.delete");
+Route::get("jurusan/{id}/edit", [JurusanController::class, "edit"])->name("jurusan.edit");
 
 Route::resource('kelas', KelasController::class)->middleware(['auth']);
+Route::patch('kelas/{kela}/update', 'KelasController@update')->name('kelas.update');
+Route::delete('/kelas/{kelas}', 'KelasController@destroy')->name('kelas.destroy');
 
 Route::resource('siswa', SiswaController::class)->middleware(['auth']);
+Route::delete('siswa/{id}/delete', 'SiswaController@destroy')->name('siswa.destroy');
+
 
 require __DIR__.'/auth.php';

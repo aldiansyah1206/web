@@ -1,28 +1,19 @@
 <x-app-layout>
-    <!-- Tautan untuk memicu modal -->
-    <a class="btn btn-danger" href="#" data-bs-toggle="modal" data-bs-target="#deleteModal{{$j->id}}">Hapus</a>
-    
-    <!-- Modal konfirmasi penghapusan -->
     <div class="modal fade" id="deleteModal{{$j->id}}" tabindex="-1" aria-labelledby="deleteModalLabel{{$j->id}}" aria-hidden="true">
         <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="deleteModalLabel{{$j->id}}">Konfirmasi Hapus</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    Apakah Anda yakin ingin menghapus jurusan ini?
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
-                    <!-- Tombol untuk menghapus dengan form -->
-                    <form action="{{ route('jurusan.destroy', $j->id) }}" method="POST">
-                        @csrf
-                        @method('DELETE')
-                        <button type="submit" class="btn btn-danger">Hapus</button>
-                    </form>
-                </div>
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="deleteModalLabel{{$j->id}}">Konfirmasi Hapus</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
+            <div class="modal-body">
+              Apakah Anda yakin ingin menghapus jurusan <strong>{{ $j->nama }}</strong>?
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+              <a class="btn btn-danger" href="{{ route("jurusan.delete", $j->id) }}">Hapus</a>
+            </div>
+          </div>
         </div>
-    </div>
+      </div>
 </x-app-layout>

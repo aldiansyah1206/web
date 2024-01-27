@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\Kelas;
-use App\Models\Jurusan;
 use Illuminate\Http\Request;
 
 class KelasController extends Controller
@@ -13,7 +12,7 @@ class KelasController extends Controller
      */
     public function index()
     {
-        $kelas = Kelas::with(["jurusan"])->orderBy('nama')->paginate(10);
+        $kelas = Kelas::orderBy ('nama')->paginate(5);
 
         return view('kelas.index', [ "kelas" => $kelas]);
     }
@@ -23,11 +22,7 @@ class KelasController extends Controller
      */
     public function create()
     {
-        $jurusan = Jurusan::All();
-
-        return view('kelas.create', [
-            "jurusan" => $jurusan
-        ]);
+        return view('kelas.create');
     }
     
     /**
@@ -36,10 +31,9 @@ class KelasController extends Controller
     public function store(Request $request)
     {
         $kelas = new Kelas;
-        $kelas->nama = $request->nama;
-        $kelas->jurusan_id = $request->jurusan_id;
+        $kelas->nama =$request->nama;
         $kelas->save();
-
+    
         return redirect()->route('kelas.index');
     }
 
@@ -56,11 +50,8 @@ class KelasController extends Controller
      */
     public function edit(Kelas $kelas)
     {
-        $jurusan = Jurusan::All();
-
         return view("kelas.edit", [
             "kelas" => $kelas,
-            "jurusan" => $jurusan
         ]);
     }
 
@@ -71,7 +62,6 @@ class KelasController extends Controller
     {
         $kelas->nama = $request->nama;
         $kelas->save();
-
         return redirect()->route('kelas.index');
     }
 
@@ -80,6 +70,8 @@ class KelasController extends Controller
      */
     public function destroy(Kelas $kelas)
     {
-        //
+        $kelas->delete();
+
+        return redirect()->route('kelas.index')->with('success', 'Kelas Berhasil Dihapus.');
     }
 }

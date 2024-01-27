@@ -13,9 +13,19 @@ class Siswa extends Model
     protected $fillable = [
     "nama",
     "nama_lengkap",
+    "jurusan_id",
     "kelas_id",
     "email",
     "alamat",
     "jenis_kelamin",
     ];
+    
+    public function kelas()
+    {
+        return $this->belongsTo(kelas::class);
+    }
+    public function jurusan()
+    {
+        return $this->belongsTo(Jurusan::class);
+    }
 }
