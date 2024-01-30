@@ -25,12 +25,20 @@
                                     <td><?= $no ?></td>
                                     <td><?= $j['nama'] ?></td>
                                     <td>
-                                        <a class="btn btn-warning  btn-sm" value="" href="{{ route("jurusan.edit", $j->id) }}">Edit</a>
-                                        <form action="{{ route("jurusan.destroy", $j->id) }}" method="POST">
-                                            @csrf
-                                            @method('DELETE')
-                                            <button type="submit" class="btn btn-danger btn-sm">Hapus</button>
-                                        </form>
+                                        <div class="p-2">
+                                            <div class="row">
+                                                <div>
+                                                    <a class="btn btn-warning " value="" href="{{ route("jurusan.edit", $j->id) }}">Edit</a>
+                                                </div>
+                                                <div>
+                                                    <form action="{{ route("jurusan.destroy", $j->id) }}" method="POST">
+                                                        @csrf
+                                                        @method('DELETE')
+                                                        <button type="submit" class="btn btn-danger">Hapus</button>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </td>
                                 </tr>
                                 <?php $no++; ?>

@@ -31,7 +31,7 @@ class KelasController extends Controller
     public function store(Request $request)
     {
         $kelas = new Kelas;
-        $kelas->nama =$request->nama;
+        $kelas->nama = $request->nama;
         $kelas->save();
     
         return redirect()->route('kelas.index');
@@ -62,14 +62,16 @@ class KelasController extends Controller
     {
         $kelas->nama = $request->nama;
         $kelas->save();
-        return redirect()->route('kelas.index');
+        
+        return redirect()->route('kelas.index')->with(['success' => 'Data Berhasil Diupdate']);
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Kelas $kelas)
+    public function destroy($id)
     {
+        $kelas= Kelas::findOrFail($id); 
         $kelas->delete();
 
         return redirect()->route('kelas.index')->with('success', 'Kelas Berhasil Dihapus.');

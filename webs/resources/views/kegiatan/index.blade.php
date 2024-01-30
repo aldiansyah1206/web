@@ -1,50 +1,53 @@
 <x-app-layout>
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12">
-                <div class="card">
-                    <div class="card-header">
-                        <h3 class="card-title">Kegiatan</h3>
-                        <a href="{{ route('kegiatan.create') }}" class="btn btn-primary float-right">+Tambah</a>
-                    </div>
-                    <div class="card-body">
-                        @if (session('success'))
-                            <div class="alert alert-success">
-                                {{ session('success') }}
-                            </div>
-                        @endif
-                        <table class="table table-bordered">
-                            <thead>
-                                <tr>
-                                    <th>ID</th>
-                                    <th>Tgl Mulai</th>
-                                    <th>Tgl Selesai</th>
-                                    <th>Keterangan</th>
-                                    <th>Actions</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @foreach ($kegiatan as $k)
+    <div class="row">
+        <div class="col-lg-12">
+            <h4 class="text-bold">Kelas</h4>
+            <div class="card shadow mb-4">
+                <div class="card-header py-2">
+                    <a class="btn btn-success my-3 mt-2" href="{{ route('kegiatan.create') }}">+Tambah</a>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                <thead>
                                     <tr>
-                                        <td>{{ $k->id }}</td>
-                                        <td>{{ $k->tgl_mulai }}</td>
-                                        <td>{{ $k->tgl_selesai }}</td>
-                                        <td>{{ $k->keterangan }}</td>
+                                        <th scope="col"class="text-center">No</th>
+                                        <th scope="col">Nama Kegiatan</th>
+                                        <th scope="col">Aksi</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php $current_page = $kegiatan->currentPage(); ?>
+                                    <?php $per_page = $kegiatan>perPage(); ?>
+                                    <?php $no = 1 + $per_page * ($current_page - 1); ?>
+                                    <?php foreach ($kegiatan as $keg): ?>
+                                    <tr>
+                                        <td><?= $no ?></td>
+                                        <td><?= $keg['nama'] ?></td>
                                         <td>
-                                            <a href="{{ route('kegiatan.show', $k->id) }}" class="btn btn-primary btn-sm">Lihat</a>
-                                            <a href="{{ route('kegiatan.edit', $k->id) }}" class="btn btn-primary btn-sm">Edit</a>
-                                            <form action="{{ route('kegiatan.destroy', $k->id) }}" method="POST" style="display: inline-block;">
-                                                @csrf
-                                                @method('DELETE')
-                                                <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to delete this kegiatan?')">Hapus</button>
-                                            </form>
+                                            <div class="p-2">
+                                                <div class="row">
+                                                    <div>
+                                                        <a class="btn btn-warning" href="{{ route("kelas.edit", $keg->id) }}">Edit</a>
+                                                    </div>
+                                                    <div>
+                                                        <form action="{{ route('kelas.destroy', $keg->id) }}" method="POST">
+                                                            @csrf
+                                                            @method('DELETE')
+                                                            <button type="submit" class="btn btn-danger">Hapus</button>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </td>
                                     </tr>
-                                @endforeach
-                            </tbody>
-                        </table>
+                                    <?php $no++; ?>
+                                    <?php endforeach; ?>
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
-                </div>
+                {{ $kegiatan->links('pagination::simple-bootstrap-5') }}
             </div>
         </div>
     </div>

@@ -60,12 +60,12 @@ Route::middleware('auth')->group(function () {
 });
 
 Route::resource('jurusan', JurusanController::class)->only(['index', 'create', 'store', 'edit', 'update', 'delete']);
-Route::delete("jurusan/{id}/delete", [JurusanController::class, "delete"])->name("jurusan.delete");
+Route::delete('jurusan/{jurusan}/destroy', [JurusanController::class, 'destroy'])->name('jurusan.destroy');
 Route::get("jurusan/{id}/edit", [JurusanController::class, "edit"])->name("jurusan.edit");
 
-Route::resource('kelas', KelasController::class)->middleware(['auth']);
-Route::patch('kelas/{kela}/update', 'KelasController@update')->name('kelas.update');
-Route::delete('/kelas/{kelas}', 'KelasController@destroy')->name('kelas.destroy');
+Route::resource('kelas', KelasController::class)->only(['index', 'create', 'store', 'edit', 'update', 'delete']);
+Route::delete('/kelas/{kelas}/destroy', [KelasController::class, 'destroy'])->name('kelas.destroy');
+Route::patch("kelas/{kela}/edit", [KelasController::class, "edit"])->name('kelas.edit');
 
 Route::resource('siswa', SiswaController::class)->middleware(['auth']);
 Route::delete('siswa/{id}/delete', 'SiswaController@destroy')->name('siswa.destroy');

@@ -6,27 +6,28 @@
                             <h4 class="card-title">Tambah Data Kelas</h4>
                         </div>
                         <div class="card-body">
-                        <form action="{{ route("kelas.store") }}" method="POST">
-                            @method('POST')
-                            @csrf
-                            <div class="row">
-                                <div class="col-lg-12">
-                                    <div class="p-3">
-                                                <label for="" class="form-label">Nama Kelas</label>
-                                                <input type="text"  name="nama" id="nama" class="form-control" required>
+                            <form action="{{ route("kelas.store") }}" method="POST">
+                                @method('POST')
+                                @csrf
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <div class="p-1">
+                                                    <label for="" class="form-label">Nama Kelas</label>
+                                                    <input type="text"  name="nama" id="nama" class="form-control" required>
+                                                </div>
                                             </div>
-                                        </div>
-                                        <div class="col-md-12">
-                                            <div class="p-2">  
-                                                <input type="hidden">
-                                                <button class="btn btn-success" type="submit">Tambah</button>
-                                                <a href="{{'/kelas'}}" class="btn btn-danger  btn-sm">Batal</a>
+                                            <div class="col-md-12">
+                                                <div class="p-2">  
+                                                    <input type="hidden">
+                                                    <button class="btn btn-success" type="submit">Tambah</button>
+                                                    <a href="{{'/kelas'}}" class="btn btn-danger  btn-sm">Batal</a>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                        </form>
+                            </form>
+                        </div>
                     </div>
                 </div>
             </div>

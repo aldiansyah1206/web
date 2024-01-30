@@ -25,29 +25,29 @@
                                 <?php $current_page = $siswa->currentPage(); ?>
                                 <?php $per_page = $siswa->perPage(); ?>
                                 <?php $no = 1 + ($per_page * ($current_page - 1)); ?>
-                                <?php foreach ($siswa as $s): ?>
-                                    <tr>
-                                        <td><?= $no; ?></td>
-                                        <td><?= $s['nama']; ?></td>
-                                        <td><?= $s['email']; ?></td>
-                                        <td><?= $s->kelas->nama; ?></td>
-                                        <td><?= $s->kelas->jurusan->nama; ?></td>
-                                        <td><?= $s['jenis_kelamin']; ?></td>
-                                        <td><?= $s['alamat']; ?></td>
-                                        <td> 
-                                        <a href="{{"siswa/profil" }}" class="btn btn-primary  btn-sm">Lihat</a> 
-                                        <a class="btn btn-warning btn-smb" href="{{ route("siswa.edit", $s) }}">Edit</a> 
-                                        <a class="btn btn-danger btn-sm" href="{{ route('siswa.destroy', $s->id) }}">Hapus</a>
-                                        </td>
-                                    </tr>
+                                @foreach ($siswa as $s)
+                                        <tr>
+                                            <td>{{ $no }}</td>
+                                            <td>{{ $s['nama'] }}</td>
+                                            <td>{{ $s['email'] }}</td>
+                                            <td>{{ $s['kelas->nama']}}</td>
+                                            <td>{{ $s['kelas->jurusan->nama']}}</td>
+                                            <td>{{ $s['jenis_kelamin'] }}</td>
+                                            <td>{{ $s['alamat'] }}</td>
+                                            <td>
+                                                <a href="{{"siswa/profil" }}" class="btn btn-primary  btn-sm">Lihat</a>
+                                                <a class="btn btn-warning btn-smb" href="{{ route("siswa.edit", $s->id) }}">Edit</a>
+                                                <a class="btn btn-danger btn-sm" href="{{ route('siswa.destroy', $s->id) }}">Hapus</a>
+                                            </td>
+                                        </tr>
                                     <?php $no++; ?>
-                                <?php endforeach; ?>
+                                @endforeach
                             </tbody>
                         </table>
                     </div>
                 </div>
+                {{ $siswa->links('pagination::simple-bootstrap-5')}}
             </div>
-            {{ $siswa->links() }}
-          </div>
+        </div>
     </div>
 </x-app-layout>

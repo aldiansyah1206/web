@@ -33,6 +33,7 @@ class JurusanController extends Controller
     {
         $jurusan = new Jurusan;
         $jurusan->nama = $request->nama;
+        
         $jurusan->save();
 
         return redirect()->route('jurusan.index');
@@ -64,7 +65,7 @@ class JurusanController extends Controller
         $jurusan->nama = $request->nama;
         $jurusan->save();
 
-        return redirect()->route('jurusan.index')->with(['success' => 'Data Berhasil Diupdate']);;
+        return redirect()->route('jurusan.index')->with(['success' => 'Data Berhasil Diupdate']);
     }
 
     /**

@@ -12,8 +12,6 @@ class Kegiatan extends Model
     use HasFactory;
     
     protected $fillable = [
-        'tgl_mulai',
-        'tgl_selesai',
-        'keterangan',
+        'nama',
     ];
 }

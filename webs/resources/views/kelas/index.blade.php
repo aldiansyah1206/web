@@ -3,7 +3,7 @@
         <div class="col-lg-12">
             <h4 class="text-bold">Kelas</h4>
             <div class="card shadow mb-4">
-                <div class="card-header py-3">
+                <div class="card-header py-2">
                     <a class="btn btn-success my-3 mt-2" href="{{ route('kelas.create') }}">+Tambah</a>
                 </div>
                 <div class="card-body">
@@ -28,7 +28,7 @@
                                             <div class="p-2">
                                                 <div class="row">
                                                     <div>
-                                                        <a class="btn btn-warning" href="{{ route("kelas.edit", $k) }}">Edit</a>
+                                                        <a class="btn btn-warning" href="{{ route("kelas.edit", $k->id) }}">Edit</a>
                                                     </div>
                                                     <div>
                                                         <form action="{{ route('kelas.destroy', $k->id) }}" method="POST">

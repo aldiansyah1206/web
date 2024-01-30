@@ -74,9 +74,28 @@
                         <i class="fas fa-address-book"></i>
                         <span>Data Presensi</span></span></a>
                 </li>
+                <!-- Nav Item - kelas -->
+                <li class="nav-item">
+                    <a class="nav-link" href="{{'kelas'}}">
+                        <i class="fas fa-address-book"></i>
+                        <span>Kelas</span></span></a>
+                </li>
+                <!-- Nav Item -jurusan  -->
+                <li class="nav-item">
+                    <a class="nav-link" href="{{'jurusan'}}">
+                        <i class="fas fa-address-book"></i>
+                        <span>Jurusan</span></span></a>
+                </li>
+                <!-- Nav Item -kegiatan  -->
+                <li class="nav-item">
+                    <a class="nav-link" href="{{'kegiatan'}}">
+                        <i class="fas fa-address-book"></i>
+                        <span>Kegiatan</span></span></a>
+                </li>
+
                 <!-- Nav Item - penjadwalan -->
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('kegiatan.index') }}">
+                    <a class="nav-link" href="{{'jadwal'}}">
                         <i class="far fa-calendar-alt"></i>
                         <span>Jadwal</span></a>
                 </li>
