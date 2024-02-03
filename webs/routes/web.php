@@ -67,8 +67,9 @@ Route::resource('kelas', KelasController::class)->only(['index', 'create', 'stor
 Route::delete('/kelas/{kelas}/destroy', [KelasController::class, 'destroy'])->name('kelas.destroy');
 Route::patch("kelas/{kela}/edit", [KelasController::class, "edit"])->name('kelas.edit');
 
-Route::resource('siswa', SiswaController::class)->middleware(['auth']);
-Route::delete('siswa/{id}/delete', 'SiswaController@destroy')->name('siswa.destroy');
+Route::resource('siswa', SiswaController::class)->only(['index', 'create', 'store', 'edit', 'update', 'destroy']);
+Route::delete('siswa/{siswa}/destroy', [SiswaController::class, 'destroy'])->name('siswa.destroy');
+Route::patch("siswa/{siswa}/edit", [SiswaController::class, "edit"])->name('siswa.edit');
 
 
 require __DIR__.'/auth.php';

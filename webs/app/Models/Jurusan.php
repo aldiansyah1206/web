@@ -13,4 +13,9 @@ class Jurusan extends Model
     protected $fillable = [
         "nama"
     ];
+
+    public function kelas()
+    {
+        return $this->belongsTo(Kelas::class, 'kelas_id');
+    }
 }

@@ -78,4 +78,5 @@ class JurusanController extends Controller
     
         return redirect()->route("jurusan.index")->with("success", "Jurusan berhasil dihapus.");
     }
+    
 }

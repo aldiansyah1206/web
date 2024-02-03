@@ -13,4 +13,5 @@ class Kelas extends Model
     protected $fillable = [
         "nama",
     ];
+    
 }

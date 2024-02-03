@@ -70,7 +70,7 @@
                     <div class="col-md-12">
                         <div class="p-3">
                             <label for="" class="form-label">Alamat</label>
-                            <textarea class="form-control" placeholder="Masukkan Alamat" id="floatingTextarea2" style="height: 100px"></textarea>
+                            <textarea class="form-control" placeholder="Masukkan Alamat"  name="alamat" id="floatingTextarea2" style="height: 100px"></textarea>
                         </div>
                     </div>
                     <div class="col-md-12">

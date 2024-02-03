@@ -14,4 +14,5 @@ class Kegiatan extends Model
     protected $fillable = [
         'nama',
     ];
+    
 }

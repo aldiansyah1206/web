@@ -1,7 +1,6 @@
 <?php
 
 namespace App\Http\Controllers;
-
 use App\Models\Kelas;
 use Illuminate\Http\Request;
 
@@ -22,6 +21,7 @@ class KelasController extends Controller
      */
     public function create()
     {
+        
         return view('kelas.create');
     }
     
@@ -73,7 +73,6 @@ class KelasController extends Controller
     {
         $kelas= Kelas::findOrFail($id); 
         $kelas->delete();
-
         return redirect()->route('kelas.index')->with('success', 'Kelas Berhasil Dihapus.');
     }
 }

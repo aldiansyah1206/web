@@ -7,19 +7,31 @@
                     <h4 class="card-title">Edit Data Siswa</h4>
                 </div>
                 <div class="card-body">
-                    <form class="row g-3" action="{{ route('siswa.update') }}" method="POST">
-                        @method('POST')
+                    <form class="row g-3" action="{{ route('siswa.update', $siswa) }}" method="POST">
+                        @method('PUT')
                         @csrf
                         <div class="col-md-12">
                             <div class="p-3">
-                            <label for="" class="form-label">Nama Siswa</label>
-                            <input type="text"  name="nama"  class="form-control" required>
+                                <label for="" class="form-label">Nama Siswa</label>
+                                <input type="text"  name="nama"  class="form-control" required>
                             </div>
                         </div>
                         <div class="col-md-12">
                             <div class="p-3">
-                            <label for="" class="form-label">Nama Lengkap</label>
-                            <input type="text"  name="nama_lengkap"  class="form-control" required>
+                                <label for="" class="form-label">Nama Lengkap</label>
+                                <input type="text"  name="nama_lengkap"  class="form-control" required>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="p-3">
+                                <label for="" class="form-label">Email</label>
+                                <input type="text"  name="email"  class="form-control" required>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="p-3">
+                                <label for="" class="form-label">Password</label>
+                                <input type="text"  name="password"  class="form-control" required>
                             </div>
                         </div>
                         <br>
@@ -45,23 +57,32 @@
                                 </select>
                                 </div>
                             </div>
-                            
+                            <div class="col-md-6">
+                                <div class="p-3">
+                                    <label for="" class="form-label">Jenis Kelamin</label>
+                                    <select id="jenis_kelamin" name="jenis_kelamin" id="jenis_kelamin"class="bg-gray-50 border border-gray-300 text-gray-900 mb-6 text-2sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                        <option selected disabled>Pilih...</option>
+                                        <option value="L">Laki-laki</option>
+                                        <option value="P">Perempuan</option>
+                                    </select>
+                                </div>
+                            </div>
                         <div class="col-md-12">
                             <div class="p-3">
-                            <label for="" class="form-label">Alamat</label>
-                            <textarea class="form-control" placeholder="Masukkan Alamat" id="floatingTextarea2" style="height: 100px"></textarea>
+                                <label for="" class="form-label">Alamat</label>
+                                <textarea class="form-control" placeholder="Masukkan Alamat"  name="alamat" id="floatingTextarea2" style="height: 100px"></textarea>
                             </div>
                         </div>
                         <div class="col-md-12">
-                        <div class="p-3">  
-                            <input type="hidden">
-                            <button class="btn-success" type="submit">Simpan</button>
-                            <a href="{{'/siswa'}}" class="btn btn-danger  btn-sm">Batal</a>
-                        </div>
+                            <div class="p-3">  
+                                <input type="hidden">
+                                <button class="btn-success" type="submit">Perbaharui</button>
+                                <a href="{{'/siswa'}}" class="btn btn-danger  btn-sm">Batal</a>
+                            </div>
                         </div>
                     </form>
                 </div>
             </div>
         </div>
     </div>
-    </x-app-layout>
+</x-app-layout>

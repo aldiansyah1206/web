@@ -35,7 +35,7 @@ class KegiatanController extends Controller
         $kegiatan->nama = $request->nama;
         $kegiatan->save();
 
-        return redirect()->route('kegiatan$kegiatan.index');
+        return redirect()->route('kegiatan.index');
     }
 
     /**

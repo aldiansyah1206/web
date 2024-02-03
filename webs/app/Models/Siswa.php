@@ -28,4 +28,5 @@ class Siswa extends Model
     {
         return $this->belongsTo(Jurusan::class);
     }
+
 }
