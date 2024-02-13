@@ -14,6 +14,7 @@ class KegiatanController extends Controller
     public function index()
     {
         $kegiatan = Kegiatan::orderBy ('nama')->paginate(5);
+
         return view('kegiatan.index', [ "kegiatan" => $kegiatan ]);
     }
     

@@ -5,6 +5,7 @@ use App\Http\Controllers\JurusanController;
 use App\Http\Controllers\KegiatanController;
 use App\Http\Controllers\KelasController;
 use App\Http\Controllers\SiswaController;
+use App\Http\Controllers\JadwalController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -66,6 +67,10 @@ Route::get("jurusan/{id}/edit", [JurusanController::class, "edit"])->name("jurus
 Route::resource('kelas', KelasController::class)->only(['index', 'create', 'store', 'edit', 'update', 'delete']);
 Route::delete('/kelas/{kelas}/destroy', [KelasController::class, 'destroy'])->name('kelas.destroy');
 Route::patch("kelas/{kela}/edit", [KelasController::class, "edit"])->name('kelas.edit');
+
+Route::resource('kegiatan', KegiatanController::class)->only(['index', 'create', 'store', 'edit', 'update', 'destroy']);
+Route::delete('kegiatan/{kegiatan}/destroy', [KegiatanController::class, 'destroy'])->name('kegiatan.destroy');
+Route::patch("kegiatan/{kegiatan}/edit", [KegiatanController::class, "edit"])->name('kegiatan.edit');
 
 Route::resource('siswa', SiswaController::class)->only(['index', 'create', 'store', 'edit', 'update', 'destroy']);
 Route::delete('siswa/{siswa}/destroy', [SiswaController::class, 'destroy'])->name('siswa.destroy');

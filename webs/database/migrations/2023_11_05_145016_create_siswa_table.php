@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('siswa', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('kelas_id');
+            $table->unsignedBigInteger('jurusan_id');
             $table->string('nama');
             $table->string('nama_lengkap');
             $table->string('email');
@@ -22,6 +23,7 @@ return new class extends Migration
             $table->enum('jenis_kelamin', ["p", "l"]);
             $table->timestamps();
 
+            $table->foreign('jurusan_id')->references('id')->on('jurusan');
             $table->foreign('kelas_id')->references('id')->on('kelas');
         });
     }

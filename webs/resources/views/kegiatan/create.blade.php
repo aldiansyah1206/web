@@ -1,34 +1,32 @@
 <x-app-layout>
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-md-8">
-                <div class="card">
-                    <div class="card-header">Tambah Kegiatan</div>
-                    <div class="card-body">
-                        <form method="POST" action="{{ route('kegiatan.store') }}">
-                            @csrf
-    
-                            <div class="form-group">
-                                <label for="keterangan">Keterangan Kegiatan</label>
-                                <input type="text" class="form-control" id="keterangan" name="keterangan"
-                                    value="{{ old('keterangan') }}" required autofocus>
+    <div class="row">
+        <div class="col-lg-6">
+            <div class="card">
+                <div class="card-header bg-primary text-white ">
+                    <h4 class="card-title">Tambah Data Kegiatan</h4>
+                </div>
+                <div class="card-body">
+                    <form action="{{ route("kegiatan.store") }}" method="POST">
+                        @method('POST')
+                        @csrf
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="p-1">
+                                            <label for="" class="form-label">Nama Kegiatan</label>
+                                            <input type="text"  name="nama" id="nama" class="form-control" required>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <div class="p-2">  
+                                            <input type="hidden">
+                                            <button class="btn btn-success" type="submit">Tambah</button>
+                                            <a href="{{'/kelas'}}" class="btn btn-danger  btn-sm">Batal</a>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
-    
-                            <div class="form-group">
-                                <label for="tgl_mulai">Tgl Mulai</label>
-                                <input type="text" class="form-control" id="tgl_mulai" name="tgl_mulai"
-                                    value="{{ old('tgl_mulai') }}" required>
-                            </div>
-    
-                            <div class="form-group">
-                                <label for="tgl_selesai">Tgl Selesai</label>
-                                <input type="text" class="form-control" id="tgl_selesai" name="tgl_selesai"
-                                    value="{{ old('tgl_selesai') }}" required>
-                            </div>
-    
-                            <button type="submit" class="btn btn-primary">Simpan</button>
-                        </form>
-                    </div>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>

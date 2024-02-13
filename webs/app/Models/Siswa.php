@@ -13,11 +13,11 @@ class Siswa extends Model
     protected $fillable = [
     "nama",
     "nama_lengkap",
-    "jurusan_id",
-    "kelas_id",
     "email",
-    "alamat",
     "jenis_kelamin",
+    'kelas_id',
+    'jurusan_id',
+    "alamat",
     ];
     
     public function kelas()

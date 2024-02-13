@@ -14,6 +14,11 @@ class Jurusan extends Model
         "nama"
     ];
 
+    public function siswa()
+    {
+        return $this->hasMany(Siswa::class);
+    }
+    
     public function kelas()
     {
         return $this->belongsTo(Kelas::class, 'kelas_id');

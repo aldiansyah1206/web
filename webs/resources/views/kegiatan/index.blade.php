@@ -1,7 +1,7 @@
 <x-app-layout>
     <div class="row">
         <div class="col-lg-12">
-            <h4 class="text-bold">Kelas</h4>
+            <h4 class="text-bold">Kegiatan</h4>
             <div class="card shadow mb-4">
                 <div class="card-header py-2">
                     <a class="btn btn-success my-3 mt-2" href="{{ route('kegiatan.create') }}">+Tambah</a>
@@ -18,7 +18,7 @@
                                 </thead>
                                 <tbody>
                                     <?php $current_page = $kegiatan->currentPage(); ?>
-                                    <?php $per_page = $kegiatan>perPage(); ?>
+                                    <?php $per_page = $kegiatan->perPage(); ?>
                                     <?php $no = 1 + $per_page * ($current_page - 1); ?>
                                     <?php foreach ($kegiatan as $keg): ?>
                                     <tr>
@@ -28,10 +28,10 @@
                                             <div class="p-2">
                                                 <div class="row">
                                                     <div>
-                                                        <a class="btn btn-warning" href="{{ route("kelas.edit", $keg->id) }}">Edit</a>
+                                                        <a class="btn btn-warning" href="{{ route("kegiatan.edit", $keg->id) }}">Edit</a>
                                                     </div>
                                                     <div>
-                                                        <form action="{{ route('kelas.destroy', $keg->id) }}" method="POST">
+                                                        <form action="{{ route('kegiatan.destroy', $keg->id) }}" method="POST">
                                                             @csrf
                                                             @method('DELETE')
                                                             <button type="submit" class="btn btn-danger">Hapus</button>
