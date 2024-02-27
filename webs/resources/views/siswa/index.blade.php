@@ -26,41 +26,41 @@
                                 <?php $current_page = $siswa->currentPage(); ?>
                                 <?php $per_page = $siswa->perPage(); ?>
                                 <?php $no = 1 + ($per_page * ($current_page - 1)); ?>
-                                @foreach ($siswa as $s)
-                                @if($s)
-                                    <tr>
-                                        <td>{{ $loop->iteration }}</td>
-
-                                        <td>{{ $s->nama ? $s->nama : '-' }}</td>
-                                        
-                                        <td>{{ $s->email ? $s->email : '-' }}</td>
-                                        
-                                        <td>{{ $s->kelas ? $s->kelas->nama : '-' }}</td>
-                                        
-                                        <td>{{ $s->jurusan ? $s->jurusan->nama : '-' }}</td>
-                                        
-                                        <td>{{ $s->jenis_kelamin ? $s->jenis_kelamin : '-' }}</td>
-                                        
-                                        <td>{{ $s->alamat ? $s->alamat : '-' }}</td>
-                                        <td>
-                                            <a href="{{"siswa/profil" }}" class="btn btn-primary  btn-sm">Lihat</a>
-                                            <a class="btn btn-warning btn-smb" href="{{ route("siswa.edit", $s->id) }}">Edit</a>
-                                            <div>
-                                                <form action="{{ route("siswa.destroy", $s->id) }}" method="POST">
-                                                    @csrf
-                                                    @method('DELETE')
-                                                    <button type="submit" class="btn btn-danger btn-smb">Hapus</button>
-                                                </form>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    @else
+                                @if($siswa->count() > 0)
+                                    @foreach ($siswa as $s)
+                                        @if($s)
+                                            <tr>
+                                                <td>{{ $no }}</td>
+                                                <td>{{ $s->nama ? $s->nama : '-' }}</td>
+                                                <td>{{ $s->email ? $s->email : '-' }}</td>
+                                                <td>{{ $s->kelas ? $s->kelas->nama : '-' }}</td>
+                                                <td>{{ $s->jurusan ? $s->jurusan->nama : '-' }}</td>
+                                                <td>{{ $s->jenis_kelamin ? $s->jenis_kelamin : '-' }}</td>
+                                                <td>{{ $s->alamat ? $s->alamat : '-' }}</td>
+                                                <td>
+                                                    <a href="{{"siswa/profil" }}" class="btn btn-primary  btn-sm">Lihat</a>
+                                                    <a class="btn btn-warning btn-smb" href="{{ route("siswa.edit", $s->id) }}">Edit</a>
+                                                    <div>
+                                                        <form action="{{ route("siswa.destroy", $s->id) }}" method="POST">
+                                                            @csrf
+                                                            @method('DELETE')
+                                                            <button type="submit" class="btn btn-danger btn-smb">Hapus</button>
+                                                        </form>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        @else
+                                            <tr>
+                                                <td colspan="8" class="text-center">Data kosong</td>
+                                            </tr>
+                                        @endif
+                                        <?php $no++; ?>
+                                    @endforeach
+                                @else
                                     <tr>
                                         <td colspan="8" class="text-center">Tidak ada data</td>
                                     </tr>
-                                    @endif
-                                    <?php $no++; ?>
-                                @endforeach
+                                @endif
                             </tbody>
                         </table>
                     </div>

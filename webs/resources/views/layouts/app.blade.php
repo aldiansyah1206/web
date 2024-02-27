@@ -65,31 +65,31 @@
                 <!-- Nav Item - datasiswa -->
                 <li class="nav-item">
                     <a class="nav-link" href="{{'/siswa'}}">
-                        <i class="fas fa-fw fa-users"></i>
+                        <i class="fas fa-user-friends"></i>
                         <span>Data Siswa </span></span></a>
                 </li>
                 <!-- Nav Item - datapresensi  -->
                 <li class="nav-item">
                     <a class="nav-link" href="{{'/presensi'}}">
-                        <i class="fas fa-address-book"></i>
+                        <i class="fas fa-clipboard-list"></i>
                         <span>Data Presensi</span></span></a>
                 </li>
                 <!-- Nav Item - kelas -->
                 <li class="nav-item">
                     <a class="nav-link" href="{{'kelas'}}">
-                        <i class="fas fa-address-book"></i>
+                        <i class="fas fa-users"></i>
                         <span>Kelas</span></span></a>
                 </li>
                 <!-- Nav Item -jurusan  -->
                 <li class="nav-item">
                     <a class="nav-link" href="{{'jurusan'}}">
-                        <i class="fas fa-address-book"></i>
+                        <i class="fas fa-school"></i>
                         <span>Jurusan</span></span></a>
                 </li>
                 <!-- Nav Item -kegiatan  -->
                 <li class="nav-item">
                     <a class="nav-link" href="{{'kegiatan'}}">
-                        <i class="fas fa-address-book"></i>
+                        <i class="far fa-list-alt"></i>
                         <span>Kegiatan</span></span></a>
                 </li>
 
@@ -181,8 +181,8 @@
                 <!-- End of Main Content -->
     
                 <!-- Footer -->
-                <footer class="sticky-footer bg-white">
-                    <div class="container my-auto">
+                <footer class="sticky-footer bg-white" style="margin-top: 20px">
+                    <div class="container my-auto" >
                         <div class="copyright text-center my-auto">
                             <span>Copyright &copy; Your Website <?= date('Y');?></span>
                         </div>

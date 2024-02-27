@@ -46,12 +46,9 @@ Route::get('/presensi', function () {
     return view('presensi/index');
 })->middleware(['auth', 'verified'])->name('presensi');
 
-Route::get('/kegiatan', function () {
-    return view('kegiatan/index');
-})->middleware(['auth', 'verified'])->name('kegiatan');
-
-Route::resource('kegiatan', KegiatanController::class)->middleware(['auth'])->names('kegiatan');
-
+Route::get('/jadwal', function () {
+    return view('jadwal/index');
+})->middleware(['auth', 'verified'])->name('jadwal');
 
 
 Route::middleware('auth')->group(function () {
@@ -75,6 +72,7 @@ Route::patch("kegiatan/{kegiatan}/edit", [KegiatanController::class, "edit"])->n
 Route::resource('siswa', SiswaController::class)->only(['index', 'create', 'store', 'edit', 'update', 'destroy']);
 Route::delete('siswa/{siswa}/destroy', [SiswaController::class, 'destroy'])->name('siswa.destroy');
 Route::patch("siswa/{siswa}/edit", [SiswaController::class, "edit"])->name('siswa.edit');
+
 
 
 require __DIR__.'/auth.php';

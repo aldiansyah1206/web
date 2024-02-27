@@ -18,6 +18,12 @@ class Siswa extends Model
     'kelas_id',
     'jurusan_id',
     "alamat",
+    "no_hp",
+    ];
+    
+    protected $hidden = [
+        'password',
+        'remember_token',
     ];
     
     public function kelas()
@@ -28,5 +34,6 @@ class Siswa extends Model
     {
         return $this->belongsTo(Jurusan::class);
     }
+    
 
 }

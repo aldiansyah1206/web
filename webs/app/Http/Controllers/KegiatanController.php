@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Controllers\Controller;
 use App\Models\Kegiatan;
-
 use Illuminate\Http\Request;
 
 class KegiatanController extends Controller
@@ -14,8 +14,7 @@ class KegiatanController extends Controller
     public function index()
     {
         $kegiatan = Kegiatan::orderBy ('nama')->paginate(5);
-
-        return view('kegiatan.index', [ "kegiatan" => $kegiatan ]);
+        return view('kegiatan.index', [ "kegiatan" => $kegiatan]);
     }
     
 

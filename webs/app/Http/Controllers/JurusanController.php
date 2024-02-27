@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\Jurusan;
 use Illuminate\Http\Request;
-use Illuminate\Http\RedirectResponse;
 
 class JurusanController extends Controller
 {

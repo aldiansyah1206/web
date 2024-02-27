@@ -20,29 +20,35 @@
                                 <?php $current_page = $jurusan->currentPage(); ?>
                                 <?php $per_page = $jurusan->perPage(); ?>
                                 <?php $no = 1 + $per_page * ($current_page - 1); ?>
-                                <?php foreach ($jurusan as $j): ?>
-                                <tr>
-                                    <td><?= $no ?></td>
-                                    <td><?= $j['nama'] ?></td>
-                                    <td>
-                                        <div class="p-2">
-                                            <div class="row">
-                                                <div>
-                                                    <a class="btn btn-warning " value="" href="{{ route("jurusan.edit", $j->id) }}">Edit</a>
+                                <?php if (count($jurusan) > 0): ?>
+                                    <?php foreach ($jurusan as $j): ?>
+                                        <tr>
+                                            <td><?= $no ?></td>
+                                            <td><?= $j['nama'] ?></td>
+                                            <td>
+                                                <div class="p-2">
+                                                    <div class="row">
+                                                        <div>
+                                                            <a class="btn btn-warning " value="" href="{{ route("jurusan.edit", $j->id) }}">Edit</a>
+                                                        </div>
+                                                        <div>
+                                                            <form action="{{ route("jurusan.destroy", $j->id) }}" method="POST">
+                                                                @csrf
+                                                                @method('DELETE')
+                                                                <button type="submit" class="btn btn-danger">Hapus</button>
+                                                            </form>
+                                                        </div>
+                                                    </div>
                                                 </div>
-                                                <div>
-                                                    <form action="{{ route("jurusan.destroy", $j->id) }}" method="POST">
-                                                        @csrf
-                                                        @method('DELETE')
-                                                        <button type="submit" class="btn btn-danger">Hapus</button>
-                                                    </form>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <?php $no++; ?>
-                                <?php endforeach; ?>
+                                            </td>
+                                        </tr>
+                                        <?php $no++; ?>
+                                    <?php endforeach; ?>
+                                <?php else: ?>
+                                    <tr>
+                                        <td colspan="8" class="text-center">Tidak ada data.</td>
+                                    </tr>
+                                <?php endif; ?>
                             </tbody>
                         </table>
                     </div>

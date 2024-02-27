@@ -6,6 +6,7 @@ use App\Models\Kelas;
 use App\Models\Siswa;
 use Illuminate\Http\Request;
 
+
 class SiswaController extends Controller
 {
     /**
