@@ -13,7 +13,7 @@
                         <div class="col-md-12">
                             <div class="p-3">
                                 <label for="" class="form-label">Nama Siswa</label>
-                                <input type="text"  name="nama"  class="form-control" required onfocus="this.oldvalue = this.value;" onchange="onChangeTest(this);this.oldvalue = this.value; >
+                                <input value="{{ $siswa->nama }}" type="text"  name="nama"  class="form-control" required onfocus="this.oldvalue = this.value;" onchange="onChangeTest(this);this.oldvalue = this.value; >
                             </div>
                         </div>
                         <div class="col-md-12">

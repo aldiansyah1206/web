@@ -4,7 +4,7 @@
             <h4 class="text-bold">Data Pembina</h4>
             <div class="card shadow mb-4">
                 <div class="card-header py-3">
-                    <a class="btn btn-success"  href="#" >+Tambah</a>
+                    <a class="btn btn-success"  href="{{ route('pembina.create') }}" >+Tambah</a>
                 </div>
 
                 <div class="card-body">
@@ -23,7 +23,7 @@
                         </table>
                     </div>
                 </div>
-                {{-- {{ $pembina->links('pagination::simple-bootstrap-5')}} --}}
+                {{ $pembina->links('pagination::simple-bootstrap-5')}}
             </div>
         </div>
     </div>

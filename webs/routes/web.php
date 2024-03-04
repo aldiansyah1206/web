@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\PembinaController;
 use App\Http\Controllers\JurusanController;
 use App\Http\Controllers\KegiatanController;
 use App\Http\Controllers\KelasController;
@@ -25,7 +26,7 @@ Route::get('/', function () {
 Route::get('/logout', function () {
     return view('auth/login');
 });
-// manual router
+
 Route::get('siswa/profil', function () {
     return view('siswa/profil');
 });
@@ -33,14 +34,6 @@ Route::get('siswa/profil', function () {
 Route::get('/dashboard', function () {
     return view('admin/dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
-
-Route::get('/pembina', function () {
-    return view('pembina/index');
-})->middleware(['auth', 'verified'])->name('pembina');
-
-Route::get('/siswa', function () {
-    return view('siswa/index');
-})->middleware(['auth', 'verified'])->name('siswa');
 
 Route::get('/presensi', function () {
     return view('presensi/index');
@@ -57,22 +50,14 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-Route::resource('jurusan', JurusanController::class)->only(['index', 'create', 'store', 'edit', 'update', 'delete']);
-Route::delete('jurusan/{jurusan}/destroy', [JurusanController::class, 'destroy'])->name('jurusan.destroy');
-Route::get("jurusan/{id}/edit", [JurusanController::class, "edit"])->name("jurusan.edit");
+Route::resource('jurusan', JurusanController::class)->only(['index', 'create', 'store', 'edit', 'update', 'destroy']);
 
-Route::resource('kelas', KelasController::class)->only(['index', 'create', 'store', 'edit', 'update', 'delete']);
-Route::delete('/kelas/{kelas}/destroy', [KelasController::class, 'destroy'])->name('kelas.destroy');
-Route::patch("kelas/{kela}/edit", [KelasController::class, "edit"])->name('kelas.edit');
+Route::resource('kelas', KelasController::class)->only(['index', 'create', 'store', 'edit', 'update', 'destroy']);
 
 Route::resource('kegiatan', KegiatanController::class)->only(['index', 'create', 'store', 'edit', 'update', 'destroy']);
-Route::delete('kegiatan/{kegiatan}/destroy', [KegiatanController::class, 'destroy'])->name('kegiatan.destroy');
-Route::patch("kegiatan/{kegiatan}/edit", [KegiatanController::class, "edit"])->name('kegiatan.edit');
+
+Route::resource('pembina', PembinaController::class)->only(['index', 'create', 'store', 'edit', 'update', 'destroy']);
 
 Route::resource('siswa', SiswaController::class)->only(['index', 'create', 'store', 'edit', 'update', 'destroy']);
-Route::delete('siswa/{siswa}/destroy', [SiswaController::class, 'destroy'])->name('siswa.destroy');
-Route::patch("siswa/{siswa}/edit", [SiswaController::class, "edit"])->name('siswa.edit');
-
-
 
 require __DIR__.'/auth.php';

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Models\Kegiatan;
+use App\Models\Siswa;
 use Illuminate\Http\Request;
 
 class KegiatanController extends Controller
@@ -13,17 +14,19 @@ class KegiatanController extends Controller
      */
     public function index()
     {
-        $kegiatan = Kegiatan::orderBy ('nama')->paginate(5);
-        return view('kegiatan.index', [ "kegiatan" => $kegiatan]);
+        $kegiatan = Kegiatan::orderBy('nama')->paginate(5);
+        return view('kegiatan.index', ["kegiatan" => $kegiatan]);
     }
-    
+
 
     /**
      * Show the form for creating a new resource.
      */
     public function create()
     {
-        return view('kegiatan.create');
+        $data_siswa = Siswa::all();
+
+        return view('kegiatan.create', ["siswa" => $data_siswa]);
     }
 
     /**
@@ -34,6 +37,8 @@ class KegiatanController extends Controller
         $kegiatan = new Kegiatan;
         $kegiatan->nama = $request->nama;
         $kegiatan->save();
+
+        $kegiatan->siswa()->attach($request->input('siswa'));
 
         return redirect()->route('kegiatan.index');
     }

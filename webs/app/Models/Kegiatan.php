@@ -14,6 +14,10 @@ class Kegiatan extends Model
     protected $fillable = [
         'nama',
         'deskripsi',
+        'siswa'
     ];
-    
+
+    public function siswa() {
+        return $this->belongsToMany(Siswa::class, 'kegiatan_siswa');
+    }
 }
