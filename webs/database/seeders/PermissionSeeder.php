@@ -80,8 +80,6 @@ class PermissionSeeder extends Seeder
         $role_siswa->givePermissionTo($permission2);
         $role_siswa->givePermissionTo($permission3);
         
-
-
 // rolesiswa mengizinkan permission
 
     }

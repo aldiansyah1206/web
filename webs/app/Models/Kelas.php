@@ -7,11 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Kelas extends Model
 {
-    protected $table = 'kelas';
     use HasFactory;
 
-    protected $fillable = [
-        "nama",
-    ];
+    protected $guarded = ['id'];
     
 }

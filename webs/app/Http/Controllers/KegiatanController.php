@@ -35,7 +35,7 @@ class KegiatanController extends Controller
     public function store(Request $request)
     {
         $kegiatan = new Kegiatan;
-        $kegiatan->nama = $request->nama;
+        $kegiatan->name= $request->nama;
         $kegiatan->save();
 
         $kegiatan->siswa()->attach($request->input('siswa'));
@@ -64,7 +64,7 @@ class KegiatanController extends Controller
      */
     public function update(Request $request, Kegiatan $kegiatan)
     {
-        $kegiatan->nama = $request->nama;
+        $kegiatan->name= $request->nama;
         $kegiatan->save();
 
         return redirect()->route('kegiatan$kegiatan.index')->with(['success' => 'Data Berhasil Diupdate']);;

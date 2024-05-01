@@ -12,7 +12,7 @@
                         <div class="col-md-12">
                             <div class="p-3">
                                 <label for="" class="form-label">Nama Pembina</label>
-                                <input type="text"  name="nama"  class="form-control" required>
+                                <input type="text"  name="name"  class="form-control" required>
                             </div>
                         </div>
                         <div class="col-md-6">

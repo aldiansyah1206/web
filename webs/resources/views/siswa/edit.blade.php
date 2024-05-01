@@ -13,16 +13,10 @@
                         <div class="col-md-12">
                             <div class="p-3">
                                 <label for="" class="form-label">Nama Siswa</label>
-                                <input value="{{ $siswa->nama }}" type="text"  name="nama"  class="form-control" required onfocus="this.oldvalue = this.value;" onchange="onChangeTest(this);this.oldvalue = this.value; >
+                                <input value="{{ $siswa->name }}" type="text"  name="name"  class="form-control" required onfocus="this.oldvalue = this.value;" onchange="onChangeTest(this);this.oldvalue = this.value; >
                             </div>
                         </div>
-                        <div class="col-md-12">
-                            <div class="p-3">
-                                <label for="" class="form-label">Nama Lengkap</label>
-                                <input type="text"  name="nama_lengkap"  class="form-control" required>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
+                        <div class ="col-md-6">
                             <div class="p-3">
                                 <label for="" class="form-label">Email</label>
                                 <input type="text"  name="email"  class="form-control" required>
@@ -41,7 +35,7 @@
                                 <select class="form-select" name="kelas_id">
                                     <option selected>Pilih...</option>
                                     <?php foreach ($kelas as $k): ?>
-                                        <option value="{{ $k->id }}">{{ $k->nama }}</option>
+                                        <option value="{{ $k->id }}">{{ $k->name }}</option>
                                     <?php endforeach; ?>
                                 </select>
                                 </div>
@@ -52,7 +46,7 @@
                                 <select class="form-select" name="jurusan_id">
                                     <option selected>Pilih...</option>
                                     <?php foreach ($jurusan as $j): ?>
-                                        <option value="{{ $j->id }}">{{ $j->nama }}</option>
+                                        <option value="{{ $j->id }}">{{ $j->name }}</option>
                                     <?php endforeach; ?>
                                 </select>
                                 </div>

@@ -14,17 +14,17 @@ class KelasSeeder extends Seeder
     {
         DB::table('kelas')->insert([
             [
-                'nama' => 'X',
+                'name' => 'X',
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
             [
-                'nama' => 'XI',
+                'name' => 'XI',
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
             [
-                'nama' => 'XII',
+                'name' => 'XII',
                 'created_at' => now(),
                 'updated_at' => now(),
             ],

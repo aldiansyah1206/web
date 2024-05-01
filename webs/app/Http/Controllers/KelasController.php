@@ -12,8 +12,8 @@ class KelasController extends Controller
      */
     public function index()
     {
-        $kelas = Kelas::orderBy ('nama')->paginate(5);
-
+        $kelas = Kelas::orderBy ('name')->paginate(5);
+        
         return view('kelas.index', [ "kelas" => $kelas]);
     }
     
@@ -32,7 +32,7 @@ class KelasController extends Controller
     public function store(Request $request)
     {
         $kelas = new Kelas;
-        $kelas->nama = $request->nama;
+        $kelas->name = $request->name;
         $kelas->save();
     
         return redirect()->route('kelas.index');
@@ -61,7 +61,7 @@ class KelasController extends Controller
      */
     public function update(Request $request, Kelas $kelas)
     {
-        $kelas->nama = $request->nama;
+        $kelas->name = $request->name;
         $kelas->save();
         
         return redirect()->route('kelas.index')->with(['success' => 'Data Berhasil Diupdate']);

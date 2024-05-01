@@ -12,7 +12,7 @@ class JurusanController extends Controller
      */
     public function index()
     {
-        $jurusan = Jurusan::orderBy ('nama')->paginate(5);
+        $jurusan = Jurusan::orderBy ('name')->paginate(5);
 
         return view('jurusan.index', [ "jurusan" => $jurusan ]);
     }
@@ -31,7 +31,7 @@ class JurusanController extends Controller
     public function store(Request $request)
     {
         $jurusan = new Jurusan;
-        $jurusan->nama = $request->nama;
+        $jurusan->name = $request->name;
         
         $jurusan->save();
 
@@ -61,7 +61,7 @@ class JurusanController extends Controller
      */
     public function update(Request $request, Jurusan $jurusan)
     {
-        $jurusan->nama = $request->nama;
+        $jurusan->name = $request->name;
         $jurusan->save();
 
         return redirect()->route('jurusan.index')->with(['success' => 'Data Berhasil Diupdate']);

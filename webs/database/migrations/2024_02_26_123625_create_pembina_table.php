@@ -13,9 +13,11 @@ return new class extends Migration
     {
         Schema::create('pembina', function (Blueprint $table) {
             $table->id();
-            $table->string('nama')->unique();
+            $table->string('name')->unique();
+            $table->string('email')->unique();
             $table->string('no_hp')->nullable();
             $table->string('image')->nullable();
+            $table->string('alamat');
             $table->timestamps();
         });
     }

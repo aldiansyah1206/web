@@ -15,65 +15,65 @@ class JurusanSeeder extends Seeder
     {
      DB::table('jurusan')->insert([
         [
-            'nama' => 'ATP 1',
+            'name' => 'ATP 1',
             'created_at' => now(),
             'updated_at' => now(),
         ],
         [
-            'nama' => 'ATP 2',
+            'name' => 'ATP 2',
             'created_at' => now(),
             'updated_at' => now(),
         ],
         [
-            'nama' => 'ATP 3',
+            'name' => 'ATP 3',
             'created_at' => now(),
             'updated_at' => now(),
         ],
         
         [
-            'nama' => 'AK 1',
+            'name' => 'AK 1',
             'created_at' => now(),
             'updated_at' => now(),
         ],
         [
-            'nama' => 'AK 2',
+            'name' => 'AK 2',
             'created_at' => now(),
             'updated_at' => now(),
         ],
         [
-            'nama' => 'AK 3',
+            'name' => 'AK 3',
             'created_at' => now(),
             'updated_at' => now(),
         ],
      
         [
-            'nama' => 'TKJ 1',
+            'name' => 'TKJ 1',
             'created_at' => now(),
             'updated_at' => now(),
         ],
         [
-            'nama' => 'TKJ 2',
+            'name' => 'TKJ 2',
             'created_at' => now(),
             'updated_at' => now(),
         ],
         [
-            'nama' => 'TKJ 3',
+            'name' => 'TKJ 3',
             'created_at' => now(),
             'updated_at' => now(),
         ],
 
         [
-            'nama' => 'TBSM 1',
+            'name' => 'TBSM 1',
             'created_at' => now(),
             'updated_at' => now(),
         ],
         [
-            'nama' => 'TBSM 2',
+            'name' => 'TBSM 2',
             'created_at' => now(),
             'updated_at' => now(),
         ],
         [
-            'nama' => 'TBSM 3',
+            'name' => 'TBSM 3',
             'created_at' => now(),
             'updated_at' => now(),
         ],

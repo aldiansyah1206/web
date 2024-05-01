@@ -7,14 +7,14 @@ use Illuminate\Database\Eloquent\Model;
 
 class Siswa extends Model
 {
-    protected $table = 'siswa';
+    protected $table = 'users';
     use HasFactory;
 
     protected $fillable = [
-    "nama",
-    "nama_lengkap",
+    "name",
     "email",
     "jenis_kelamin",
+    "password",
     'kelas_id',
     'jurusan_id',
     "alamat",

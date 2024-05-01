@@ -13,7 +13,7 @@ class PembinaController extends Controller
      */
     public function index()
     {
-        $pembina = Pembina::OrderBy('nama')->paginate(5);
+        $pembina = Pembina::OrderBy('name')->paginate(5);
         return view('pembina.index', [ "pembina" => $pembina]);
     }
 
@@ -31,7 +31,7 @@ class PembinaController extends Controller
     public function store(Request $request)
     {
         $pembina = new Pembina;
-        $pembina->nama = $request->nama;
+        $pembina->name = $request->name;
         $pembina->email = $request->email;
         $pembina->password = $request->password;
         $pembina->no_hp = $request->no_hp;
@@ -65,7 +65,7 @@ class PembinaController extends Controller
     public function update(Request $request, $id)
     {
         $pembina = Pembina::find($id);
-        $pembina->nama = $request->nama;
+        $pembina->name = $request->name;
         $pembina->email = $request->email;
         $pembina->password = $request->password;
         $pembina->no_hp = $request->no_hp;

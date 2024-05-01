@@ -24,7 +24,7 @@
                                     <?php foreach ($jurusan as $j): ?>
                                         <tr>
                                             <td><?= $no ?></td>
-                                            <td><?= $j['nama'] ?></td>
+                                            <td><?= $j['name'] ?></td>
                                             <td>
                                                 <div class="p-2">
                                                     <div class="row">

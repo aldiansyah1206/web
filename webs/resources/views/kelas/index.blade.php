@@ -24,7 +24,7 @@
                                         <?php foreach ($kelas as $k): ?>
                                             <tr>
                                                 <td><?= $no ?></td>
-                                                <td><?= $k['nama'] ?></td>
+                                                <td><?= $k['name'] ?></td>
                                                 <td>
                                                     <div class="p-2">
                                                         <div class="row">
@@ -54,7 +54,7 @@
                             </table>
                         </div>
                     </div>
-                {{ $kelas->links('pagination::simple-bootstrap-5') }}
+                {{ $kelas->links('pagination::simple-bootstrap-4') }}
             </div>
         </div>
     </div>

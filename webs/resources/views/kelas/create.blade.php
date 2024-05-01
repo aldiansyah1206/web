@@ -13,7 +13,7 @@
                                     <div class="col-lg-12">
                                         <div class="p-1">
                                                     <label for="" class="form-label">Nama Kelas</label>
-                                                    <input type="text"  name="nama" id="nama" class="form-control" required>
+                                                    <input type="text"  name="name" id="name" class="form-control" required>
                                                 </div>
                                             </div>
                                             <div class="col-md-12">

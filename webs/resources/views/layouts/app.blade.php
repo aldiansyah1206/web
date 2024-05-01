@@ -170,7 +170,14 @@
     
                     <!-- Begin Page Content -->
                     <div class="container-fluid">
-    
+                      @if(session()->has('success'))
+                        <div class="row"></div>
+                        <div class="col-12">
+                            <div class="alert alert-succsess">
+                            {{ session('success') }}
+                            </div>
+                        </div>
+                      @endif
                         <!-- Page Heading -->
                         {{ $slot }}
     

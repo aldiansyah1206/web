@@ -13,9 +13,10 @@
                             <thead>
                                 <tr>
                                     <th scope="col"class="text-center">No</th>
-                                    <th scope="col">Nama </th>
+                                    <th scope="col">Name </th>
                                     <th scope="col">Email</th> </th>
                                     <th scope="col">Kelas</th>
+                                    <th scope="col">No Hp</th>
                                     <th scope="col">Jurusan</th>
                                     <th scope="col">Jenis Kelamin</th>
                                     <th scope="col">Alamat</th>
@@ -31,10 +32,11 @@
                                         @if($s)
                                             <tr>
                                                 <td>{{ $no }}</td>
-                                                <td>{{ $s->nama ? $s->nama : '-' }}</td>
+                                                <td>{{ $s->name ? $s->name : '-' }}</td>
                                                 <td>{{ $s->email ? $s->email : '-' }}</td>
-                                                <td>{{ $s->kelas ? $s->kelas->nama : '-' }}</td>
-                                                <td>{{ $s->jurusan ? $s->jurusan->nama : '-' }}</td>
+                                                <td>{{ $s->kelas ? $s->kelas->name : '-' }}</td>
+                                                <td>{{ $s->no_hp ? $s->no_hp: '-' }}</td>
+                                                <td>{{ $s->jurusan ? $s->jurusan->name : '-' }}</td>
                                                 <td>{{ $s->jenis_kelamin ? $s->jenis_kelamin : '-' }}</td>
                                                 <td>{{ $s->alamat ? $s->alamat : '-' }}</td>
                                                 <td>

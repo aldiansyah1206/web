@@ -15,15 +15,13 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('kelas_id');
             $table->unsignedBigInteger('jurusan_id');
-            $table->string('nama')->unique();
-            $table->string('nama_lengkap');
+            $table->string('name')->unique();
             $table->string('email')->unique();
             $table->string('password');
             $table->string('no_hp');
             $table->text('alamat');
             $table->enum('jenis_kelamin', ["p", "l"]);
             $table->timestamps();
-
             $table->foreign('jurusan_id')->references('id')->on('jurusan');
             $table->foreign('kelas_id')->references('id')->on('kelas');
         });

@@ -11,7 +11,7 @@
                         @csrf
                         <div class="p-1">
                             <label for="" class="form-label">Nama Kelas</label>
-                            <input value="{{ $kelas->nama }}"  type="text"  name="nama" id="nama" class="form-control"  onfocus="this.oldvalue = this.value;" onchange="onChangeTest(this);this.oldvalue = this.value;"  required />
+                            <input value="{{ $kelas->name }}"  type="text"  name="nama" id="nama" class="form-control"  onfocus="this.oldvalue = this.value;" onchange="onChangeTest(this);this.oldvalue = this.value;"  required />
                         </div>
                         <div class="p-2">  
                             <input type="hidden">
