@@ -13,7 +13,6 @@
                 <input type="file" class="form-control" id="inputGroupFile01">
               </div>
             </div>
-
           </div>
         </div>
         <div class="col-lg-8">
@@ -97,5 +96,5 @@
             </div>
           </div>
         </div>
-      </div>
+    </div>
 </x-app-layout>

@@ -4,10 +4,13 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasOne;
+
 
 class Siswa extends Model
 {
-    protected $table = 'users';
+    protected $table = 'siswa';
+    
     use HasFactory;
 
     protected $fillable = [
@@ -38,5 +41,15 @@ class Siswa extends Model
     public function kegiatan()
     {
         return $this->belongsToMany(Kegiatan::class, 'kegiatan_siswa');
+    }
+
+    public function presensi()
+    {
+        return $this->hasOne(Presensi::class, 'presensi_id');
+    }
+
+    public function role(): HasOne
+    {
+        return $this->hasOne(Role::class, 'pembina_id', 'id');
     }
 }

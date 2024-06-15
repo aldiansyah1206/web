@@ -19,7 +19,6 @@ return new class extends Migration
             $table->time('jam_mulai');
             $table->time('jam_selesai');
             $table->timestamps();
-
             $table->foreign('kegiatan_id')->references('id')->on('kegiatan')->onDelete('cascade');
             $table->foreign('pembina_id')->references('id')->on('pembina')->onDelete('cascade');
         });

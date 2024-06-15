@@ -20,29 +20,35 @@
                                     <?php $current_page = $kegiatan->currentPage(); ?>
                                     <?php $per_page = $kegiatan->perPage(); ?>
                                     <?php $no = 1 + $per_page * ($current_page - 1); ?>
-                                    <?php foreach ($kegiatan as $keg): ?>
-                                    <tr>
-                                        <td><?= $no ?></td>
-                                        <td><?= $keg['nama'] ?></td>
-                                        <td>
-                                            <div class="p-2">
-                                                <div class="row">
-                                                    <div>
-                                                        <a class="btn btn-warning" href="{{ route("kegiatan.edit", $keg->id) }}">Edit</a>
+                                    <?php if (count($kegiatan) > 0): ?>
+                                        <?php foreach ($kegiatan as $keg): ?>
+                                            <tr>
+                                                <td><?= $no ?></td>
+                                                <td><?= $keg['name'] ?></td>
+                                                <td>
+                                                    <div class="p-2">
+                                                        <div class="row">
+                                                            <div>
+                                                                <a class="btn btn-warning " value="" href="{{ route("kegiatan.edit", $keg->id) }}">Edit</a>
+                                                            </div>
+                                                            <div>
+                                                                <form action="{{ route("kegiatan.destroy", $keg->id) }}" method="POST">
+                                                                    @csrf
+                                                                    @method('DELETE')
+                                                                    <button type="submit" class="btn btn-danger">Hapus</button>
+                                                                </form>
+                                                            </div>
+                                                        </div>
                                                     </div>
-                                                    <div>
-                                                        <form action="{{ route('kegiatan.destroy', $keg->id) }}" method="POST">
-                                                            @csrf
-                                                            @method('DELETE')
-                                                            <button type="submit" class="btn btn-danger">Hapus</button>
-                                                        </form>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <?php $no++; ?>
-                                    <?php endforeach; ?>
+                                                </td>
+                                            </tr>
+                                            <?php $no++; ?>
+                                        <?php endforeach; ?>
+                                    <?php else: ?>
+                                        <tr>
+                                            <td colspan="8" class="text-center">Tidak ada data.</td>
+                                        </tr>
+                                    <?php endif; ?>
                                 </tbody>
                             </table>
                         </div>

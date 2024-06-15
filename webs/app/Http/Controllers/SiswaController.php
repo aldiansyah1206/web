@@ -27,7 +27,7 @@ class SiswaController extends Controller
     {
         $jurusan = Jurusan::All();
         $kelas = Kelas::All();
-        return view('siswa.create', [
+        return view('admin.createsiswa', [
             "jurusan" => $jurusan,
             "kelas" => $kelas
         ]);
@@ -89,6 +89,7 @@ class SiswaController extends Controller
         $siswa->password = $request->password;
         $siswa->kelas_id = $request->kelas_id;
         $siswa->jurusan_id = $request->jurusan_id;
+        $siswa->no_hp = $request->no_hp;
         $siswa->alamat = $request->alamat ?? '';
         $siswa->save();
         return view('siswa.edit', compact('siswa', 'kelas', 'jurusan'));

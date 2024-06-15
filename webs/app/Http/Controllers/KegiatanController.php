@@ -14,8 +14,9 @@ class KegiatanController extends Controller
      */
     public function index()
     {
-        $kegiatan = Kegiatan::orderBy('nama')->paginate(5);
-        return view('kegiatan.index', ["kegiatan" => $kegiatan]);
+        $kegiatan = Kegiatan::orderBy ('name')->paginate(5);
+        
+        return view('kegiatan.index', [ "kegiatan" => $kegiatan]);
     }
 
 
@@ -24,9 +25,8 @@ class KegiatanController extends Controller
      */
     public function create()
     {
-        $data_siswa = Siswa::all();
 
-        return view('kegiatan.create', ["siswa" => $data_siswa]);
+        return view('kegiatan.create');
     }
 
     /**
@@ -37,9 +37,6 @@ class KegiatanController extends Controller
         $kegiatan = new Kegiatan;
         $kegiatan->name= $request->nama;
         $kegiatan->save();
-
-        $kegiatan->siswa()->attach($request->input('siswa'));
-
         return redirect()->route('kegiatan.index');
     }
 
@@ -54,7 +51,7 @@ class KegiatanController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Kegiatan $kegiatan)
     {
         return view('kegiatan.edit', compact('kegiatan'));
     }

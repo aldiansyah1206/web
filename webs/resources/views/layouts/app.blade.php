@@ -55,7 +55,7 @@
                 <div class="sidebar-heading">
                     Menu
                 </div>
-            
+               @if (Auth::user()->hasRole('admin'))
                 <!-- Nav Item - datapembina -->
                 <li class="nav-item">
                     <a class="nav-link" href="{{'/pembina'}}">
@@ -67,12 +67,6 @@
                     <a class="nav-link" href="{{'/siswa'}}">
                         <i class="fas fa-user-friends"></i>
                         <span>Data Siswa </span></span></a>
-                </li>
-                <!-- Nav Item - datapresensi  -->
-                <li class="nav-item">
-                    <a class="nav-link" href="{{'/presensi'}}">
-                        <i class="fas fa-clipboard-list"></i>
-                        <span>Data Presensi</span></span></a>
                 </li>
                 <!-- Nav Item - kelas -->
                 <li class="nav-item">
@@ -86,29 +80,53 @@
                         <i class="fas fa-school"></i>
                         <span>Jurusan</span></span></a>
                 </li>
-                <!-- Nav Item -kegiatan  -->
+                <!-- Nav Item -kegitan  -->
                 <li class="nav-item">
                     <a class="nav-link" href="{{'kegiatan'}}">
-                        <i class="far fa-list-alt"></i>
+                        <i class="fas fa-school"></i>
                         <span>Kegiatan</span></span></a>
                 </li>
+                @endif
 
+                @if (Auth::user()->hasRole('pembina'))
+                <!-- Nav Item - datapresensi  -->
+                <li class="nav-item">
+                    <a class="nav-link" href="{{'/presensi'}}">
+                        <i class="fas fa-clipboard-list"></i>
+                        <span>Presensi</span></span></a>
+                </li>
+                <!-- Nav Item - datapresensi  -->
+                <li class="nav-item">
+                    <a class="nav-link" href="{{'/riwayatpresensi'}}">
+                        <i class="fas fa-clipboard-list"></i>
+                        <span>Riwayat Presensi</span></span></a>
+                </li>
+                @endif
+
+                @if (Auth::user()->hasRole('siswa'))
                 <!-- Nav Item - penjadwalan -->
                 <li class="nav-item">
                     <a class="nav-link" href="{{'jadwal'}}">
                         <i class="far fa-calendar-alt"></i>
                         <span>Jadwal</span></a>
                 </li>
+                       <!-- Nav Item - penjadwalan -->
+                       <li class="nav-item">
+                        <a class="nav-link" href="{{'riwayatpresensisiswa'}}">
+                            <i class="far fa-calendar-alt"></i>
+                            <span>Riwayat Presensi</span></a>
+                    </li>
+                @endif
                 <!-- Divider -->
                 <hr class="sidebar-divider my-0">
-                        
+                @if (Auth::user()->hasRole('admin') || Auth::user()->hasRole('pembina') || Auth::user()->hasRole('siswa'))   
                 <!-- Nav Item - logout -->
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('logout') }}">
                         <i class="fas fa-sign-out-alt"></i>
                         <span>Logout</span></a>
                 </li>
-                
+                @endif
                 <!-- Divider -->
                 <hr class="sidebar-divider">
 

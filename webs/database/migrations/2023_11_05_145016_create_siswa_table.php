@@ -11,13 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('siswa', function (Blueprint $table) {
+        Schema::create('siswa', function (Blueprint $table){
             $table->id();
-            $table->unsignedBigInteger('kelas_id');
-            $table->unsignedBigInteger('jurusan_id');
             $table->string('name')->unique();
             $table->string('email')->unique();
             $table->string('password');
+            $table->unsignedBigInteger('kelas_id');
+            $table->unsignedBigInteger('jurusan_id');
             $table->string('no_hp');
             $table->text('alamat');
             $table->enum('jenis_kelamin', ["p", "l"]);

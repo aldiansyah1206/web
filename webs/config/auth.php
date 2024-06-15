@@ -40,6 +40,14 @@ return [
             'driver' => 'session',
             'provider' => 'users',
         ],
+        'pembina' => [
+            'driver' => 'session',
+            'provider' => 'pembina',
+        ],
+        'siswa' => [
+            'driver' => 'session',
+            'provider' => 'siswa',
+        ],
     ],
 
     /*
@@ -63,6 +71,14 @@ return [
         'users' => [
             'driver' => 'eloquent',
             'model' => App\Models\User::class,
+        ],
+        'pembina' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\Pembina::class,
+        ],
+        'siswa' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\Siswa::class,
         ],
 
         // 'users' => [

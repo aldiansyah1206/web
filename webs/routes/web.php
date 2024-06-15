@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\PembinaController;
 use App\Http\Controllers\JurusanController;
 use App\Http\Controllers\KegiatanController;
@@ -19,25 +20,41 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-
+// login
 Route::get('/', function () {
     return view('auth/login');
 });
 Route::get('/logout', function () {
     return view('auth/login');
 });
-
+// profil siswa
 Route::get('siswa/profil', function () {
     return view('siswa/profil');
 });
-
+// dashboard
 Route::get('/dashboard', function () {
-    return view('admin/dashboard');
+    return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
+
+Route::get('admin dashboard', function () {
+    return view('admin.dashboard');
+})->middleware('role:admin')->name('admin.dashboard');
+
+Route::get('pembina dashboard', function () {
+    return view('pembina.dashboard');
+})->middleware('role:pembina')->name('pembina.dashboard');
+
+Route::get('siswa dashboard', function () {
+    return view('siswa.dashboard');
+})->middleware('role:siswa')->name('siswa.dashboard');
 
 Route::get('/presensi', function () {
     return view('presensi/index');
 })->middleware(['auth', 'verified'])->name('presensi');
+
+Route::get('/kegiatan', function () {
+    return view('kegiatan/index');
+})->middleware(['auth', 'verified'])->name('kegiatan');
 
 Route::get('/jadwal', function () {
     return view('jadwal/index');

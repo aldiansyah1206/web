@@ -15,16 +15,22 @@ class AuthController extends Controller
 
     public function login(Request $request)
     {
-        $request->validate([
-            'nrp' => ['required', 'size:9', 'required_with:password', new LoginRule($request->password)],
-            'password' => ['required'],
+        $this->validate($request, [
+            'email' => 'equired|email',
+            'password' => 'equired',
         ]);
 
-        if (Auth::attempt(['nrp' => $request->nrp, 'password' => $request->password])) {
-            return redirect()->intended('/home');
+        if (Auth::guard('users')->attempt(['email' => $request->email, 'password' => $request->password])) {
+            return redirect()->intended(route('admin.dashboard'));
+        }
+        if (Auth::guard('pembina')->attempt(['email' => $request->email, 'password' => $request->password])) {
+            return redirect()->intended(route('pembina.dashboard'));
+        }
+        if (Auth::guard('siswa')->attempt(['email' => $request->email, 'password' => $request->password])) {
+            return redirect()->intended(route('siswa.dashboard'));
         }
 
-        return redirect()->back()->withErrors(['nrp' => 'NRP atau kata sandi salah.']);
+        return back()->withErrors(['email' => 'Invalid credentials']);
     }
 
     public function logout()
