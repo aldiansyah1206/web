@@ -3,14 +3,16 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\HasOne;
+use Illuminate\Foundation\Auth\User as Authenticatable;
+use Spatie\Permission\Traits\HasRoles;
 
-class Pembina extends Model
+class Pembina extends Authenticatable
 {
-    use HasFactory;
+    use HasFactory, HasRoles;
 
-    protected $table = 'users';
+    protected $table = 'pembina';
+    protected $guarded = [];
+    protected $guard_name = 'pembina';
 
     protected $fillable = [
         'nama',
@@ -24,11 +26,10 @@ class Pembina extends Model
 
     protected $hidden = [
         'password',
+        'remember_token',
     ];
 
-    public function role()
-    {
-        return $this->belongsTo(Role::class, 'role_id');
-    }
-    
+    protected $casts = [
+        'email_verified_at' => 'datetime',
+    ];
 }

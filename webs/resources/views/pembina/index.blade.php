@@ -36,13 +36,7 @@
                                                     <td>{{ $p->role?->name?? '-' }}</td>
                                                     <td>{{ $p->jenis_kelamin }}</td>
                                                     <td>{{ $p->no_hp ? $p->no_hp: '-' }}</td>
-                                                    <td>
-                                                        @if($p->gambar)
-                                                            <img src="{{ asset('storage/' . $p->gambar) }}" alt="Gambar" width="50" height="50">
-                                                        @else
-                                                            <p>Tiada gambar</p>
-                                                        @endif
-                                                    </td>
+                                                    <td><img src="{{ asset('images/' . $p->image) }}" alt="Gambar" width="50"></td>
                                                     <td>{{ $p->alamat ? $p->alamat : '-' }}</td>
                                                     <td>
                                                         <a href="{{"pembina/profil" }}" class="btn btn-primary  btn-sm">Lihat</a>

@@ -36,18 +36,16 @@
                     <div class="sidebar-brand-text mx-3">Sistem Presensi</div>
                 </a>
                 <li class="nav-item">
-            
                
+               @if (Auth::user()->hasRole('admin'))
                 <!-- Divider -->
                 <hr class="sidebar-divider my-0">
-            
                 <!-- Nav Item - Dashboard -->
                 <li class="nav-item">
-                    <a class="nav-link" href="{{'/dashboard'}}">
+                    <a class="nav-link" href="{{'/dashboard-admin'}}">
                         <i class="fas fa-fw fa-tachometer-alt"></i>
                         <span>Dashboard</span></a>
                 </li>
-            
                 <!-- Divider -->
                 <hr class="sidebar-divider">
             
@@ -55,7 +53,6 @@
                 <div class="sidebar-heading">
                     Menu
                 </div>
-               @if (Auth::user()->hasRole('admin'))
                 <!-- Nav Item - datapembina -->
                 <li class="nav-item">
                     <a class="nav-link" href="{{'/pembina'}}">
@@ -89,6 +86,21 @@
                 @endif
 
                 @if (Auth::user()->hasRole('pembina'))
+                 <!-- Divider -->
+                 <hr class="sidebar-divider my-0">
+                 <!-- Nav Item - Dashboard -->
+                 <li class="nav-item">
+                     <a class="nav-link" href="{{'/dashboard-pembina'}}">
+                         <i class="fas fa-fw fa-tachometer-alt"></i>
+                         <span>Dashboard</span></a>
+                 </li>
+                 <!-- Divider -->
+                 <hr class="sidebar-divider">
+             
+                 <!-- Heading -->
+                 <div class="sidebar-heading">
+                     Menu
+                 </div>
                 <!-- Nav Item - datapresensi  -->
                 <li class="nav-item">
                     <a class="nav-link" href="{{'/presensi'}}">
@@ -104,6 +116,21 @@
                 @endif
 
                 @if (Auth::user()->hasRole('siswa'))
+                 <!-- Divider -->
+                 <hr class="sidebar-divider my-0">
+                 <!-- Nav Item - Dashboard -->
+                 <li class="nav-item">
+                     <a class="nav-link" href="{{'/dashboard-siswa'}}">
+                         <i class="fas fa-fw fa-tachometer-alt"></i>
+                         <span>Dashboard</span></a>
+                 </li>
+                 <!-- Divider -->
+                 <hr class="sidebar-divider">
+             
+                 <!-- Heading -->
+                 <div class="sidebar-heading">
+                     Menu
+                 </div>
                 <!-- Nav Item - penjadwalan -->
                 <li class="nav-item">
                     <a class="nav-link" href="{{'jadwal'}}">

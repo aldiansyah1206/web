@@ -18,7 +18,7 @@ class User extends Authenticatable
      *
      * @var array<int, string>
      */
-    protected $tabel = 'users';
+    protected $table = 'users';
     protected $fillable = ['name', 'email', 'password'];
 
     /**
@@ -40,9 +40,14 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
-    
-    public function role()
+
+    public function pembina()
     {
-        return $this->belongsTo(Role::class);
+        return $this->belongsTo(Pembina::class);
     }
+    public function siswa()
+    {
+        return $this->belongsTo(Siswa::class);
+    }
+    
 }

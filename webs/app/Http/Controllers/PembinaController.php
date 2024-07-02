@@ -1,20 +1,25 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Models\Role;
+
 use App\Models\Pembina;
+use Spatie\Permission\Models\Role;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
-
 
 class PembinaController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function countpembinadata()
     {
-        $pembina = Pembina::with('role')->paginate(10);
+        $pembina = Pembina::orderBy('name')->paginate(10);
+        return view('pembina.index', compact('pembina'));
+    }
+        public function index()
+    {
+        $pembina = Pembina::orderBy('name')->paginate(10);
         return view('pembina.index', compact('pembina'));
     }
 
@@ -33,24 +38,43 @@ class PembinaController extends Controller
      */
     public function store(Request $request)
     {
-        $pembina = new Pembina;
-        $pembina->name = $request->name;
-        $pembina->email = $request->email;
-        $pembina->password = Hash::make($request->password);
-        $pembina->jenis_kelamin = $request->jenis_kelamin;
-        $pembina->no_hp = $request->no_hp;
-        $pembina->alamat = $request->alamat;  
-        $pembina->role_id = $request->input('role_id');
-        if ($request->hasFile('image')) {
-            $image = $request->file('image');
-            $filename = time() . '.' . $image->getClientOriginalExtension();
-            $image->move(public_path('images'), $filename);
-            $pembina->image = $filename;
-        }
-        $pembina->save();
+             // Validasi input
+            $request->validate([
+                'name' => 'required|string|max:255',
+                'email' => 'required|string|email|max:255|unique:pembina,email',
+                'password' => 'required|string|min:8|confirmed',
+                'jenis_kelamin' => 'required|string|max:10',
+                'no_hp' => 'nullable|string|max:15',
+                'alamat' => 'required|string|max:255',
+                'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            ]);
 
-        return redirect()->route('pembina.index');
-    }
+            // Membuat instansi Pembina baru
+            $pembina = new Pembina;
+            $pembina->name = $request->name;
+            $pembina->email = $request->email;
+            $pembina->password = Hash::make($request->password);
+            $pembina->jenis_kelamin = $request->jenis_kelamin;
+            $pembina->no_hp = $request->no_hp;
+            $pembina->alamat = $request->alamat;
+
+            // Penanganan unggahan gambar
+            if ($request->hasFile('image')) {
+                $image = $request->file('image');
+                $filename = time() . '.' . $image->getClientOriginalExtension();
+                $image->move(public_path('images'), $filename);
+                $pembina->image = $filename;
+            }
+
+            // Menyimpan Pembina ke database
+            $pembina->save();
+
+            // Menetapkan peran kepada Pembina
+            $pembina->assignRole('pembina', 'pembina');
+
+            // Mengarahkan kembali ke route pembina.index dengan pesan sukses
+            return redirect()->route('pembina.index')->with('success', 'Pembina berhasil ditambahkan.');
+}
 
     /**
      * Display the specified resource.

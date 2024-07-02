@@ -71,14 +71,17 @@ return [
         'users' => [
             'driver' => 'eloquent',
             'model' => App\Models\User::class,
+            'table' => 'users', 
         ],
         'pembina' => [
             'driver' => 'eloquent',
             'model' => App\Models\Pembina::class,
+            'table' => 'pembina', 
         ],
         'siswa' => [
             'driver' => 'eloquent',
             'model' => App\Models\Siswa::class,
+            'table' => 'siswa', 
         ],
 
         // 'users' => [

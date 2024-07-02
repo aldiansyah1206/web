@@ -20,4 +20,8 @@ class Kegiatan extends Model
     {
         return $this->belongsTo(Pembina::class, 'pembina_id');
     }
+    public function siswa()
+    {
+        return $this->belongsTo(Siswa::class, 'siswa_id');
+    }
 }

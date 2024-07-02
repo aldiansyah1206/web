@@ -8,7 +8,9 @@ use App\Http\Controllers\KegiatanController;
 use App\Http\Controllers\KelasController;
 use App\Http\Controllers\SiswaController;
 use App\Http\Controllers\JadwalController;
+use App\Http\Controllers\DashboardController;
 use Illuminate\Support\Facades\Route;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -31,26 +33,23 @@ Route::get('/logout', function () {
 Route::get('siswa/profil', function () {
     return view('siswa/profil');
 });
+
 // dashboard
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+Route::middleware(['auth:siswa'])->group(function () {
+    Route::view('/dashboard-siswa', 'dashboard')->name('dashboard.siswa');
+});
 
-Route::get('admin dashboard', function () {
-    return view('admin.dashboard');
-})->middleware('role:admin')->name('admin.dashboard');
+Route::middleware(['auth:pembina'])->group(function () {
+    Route::view('/dashboard-pembina', 'dashboard')->name('dashboard.pembina');
+});
 
-Route::get('pembina dashboard', function () {
-    return view('pembina.dashboard');
-})->middleware('role:pembina')->name('pembina.dashboard');
-
-Route::get('siswa dashboard', function () {
-    return view('siswa.dashboard');
-})->middleware('role:siswa')->name('siswa.dashboard');
+Route::middleware(['auth:web'])->group(function () {
+    Route::view('/dashboard-admin', 'dashboard')->name('dashboard.admin');
+});
 
 Route::get('/presensi', function () {
     return view('presensi/index');
-})->middleware(['auth', 'verified'])->name('presensi');
+})->middleware(['auth:pembina'])->name('presensi');
 
 Route::get('/kegiatan', function () {
     return view('kegiatan/index');
@@ -61,6 +60,17 @@ Route::get('/jadwal', function () {
 })->middleware(['auth', 'verified'])->name('jadwal');
 
 
+Route::middleware(['auth:siswa'])->group(function () {
+    Route::view('/dashboard', 'dashboard');
+});
+
+Route::middleware(['auth:pembina'])->group(function () {
+    Route::view('/dashboard', 'dashboard');
+});
+
+Route::middleware(['auth:web'])->group(function () {
+    Route::view('/dashboard', 'dashboard');
+});
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
@@ -76,5 +86,9 @@ Route::resource('kegiatan', KegiatanController::class)->only(['index', 'create',
 Route::resource('pembina', PembinaController::class)->only(['index', 'create', 'store', 'edit', 'update', 'destroy']);
 
 Route::resource('siswa', SiswaController::class)->only(['index', 'create', 'store', 'edit', 'update', 'destroy']);
+
+Route::middleware(['auth:pembina'])->group(function () {
+    
+});
 
 require __DIR__.'/auth.php';

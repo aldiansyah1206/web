@@ -5,7 +5,7 @@ use App\Models\Jurusan;
 use App\Models\Kelas;
 use App\Models\Siswa;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\Hash;
 
 class SiswaController extends Controller
 {
@@ -38,25 +38,42 @@ class SiswaController extends Controller
      */
     public function store(Request $request)
     {
-            $request->validate([
-                'name'=>'required',
-                'email'=>'required|email',
-                'alamat'=>'required',
-            ]);
-            Siswa::create([
-                'name'=>$request->name,
-                'email'=>$request->email,
-                'password'=>$request->password,
-                'no_hp'=>$request->no_hp,
-                'kelas_id'=>$request->kelas_id,
-                'jurusan_id'=>$request->jurusan_id,
-                'alamat'=>$request->alamat,
-            ]);
-            $jurusan = Jurusan::all();
-            $kelas = Kelas::all();
+        // Validasi create data siswa
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'email' => 'required|string|email|max:255|unique:pembina,email',
+            'password' => 'required|string|min:8|confirmed',
+            'jenis_kelamin' => 'required|string|max:10',
+            'no_hp' => 'nullable|string|max:15',
+            'alamat' => 'required|string|max:255',
+            'kegiatan' => 'required|exists:kegiatan,id', // Validasi kegiatan
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+        ]);
     
-            return redirect()->route('siswa.index')->with('success', 'Data Siswa Berhasil Ditambah');
+        // Membuat instance baru siswa
+        $siswa = new Siswa();
+        $siswa->name = $request->name;
+        $siswa->email = $request->email;
+        $siswa->password = Hash::make($request->password); // Hash password
+        $siswa->jenis_kelamin = $request->jenis_kelamin;
+        $siswa->no_hp = $request->no_hp;
+        $siswa->kelas_id = $request->kelas_id;
+        $siswa->jurusan_id = $request->jurusan_id;
+        $siswa->alamat = $request->alamat;
+        $siswa->kegiatan_id = $request->kegiatan_id; // Menyimpan kegiatan yang diikuti siswa
+    
+        // Menangani upload file untuk gambar
+        if ($request->hasFile('image')) {
+            $imagePath = $request->file('image')->store('uploads', 'public');
+            $siswa->image = $imagePath;
+        }
+    
+        // Menyimpan instance siswa
+        $siswa->save();
+    
+        return redirect()->route('siswa.index')->with('success', 'Data Siswa Berhasil Ditambah');
     }
+    
 
     /**
      * Display the specified resource.

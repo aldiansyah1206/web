@@ -4,7 +4,6 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\HasOne;
 
 
 class Siswa extends Model
@@ -16,12 +15,12 @@ class Siswa extends Model
     protected $fillable = [
     "name",
     "email",
-    "jenis_kelamin",
     "password",
+    "jenis_kelamin",
     'kelas_id',
     'jurusan_id',
-    "alamat",
     "no_hp",
+    "alamat",
     ];
     
     protected $hidden = [
@@ -48,8 +47,8 @@ class Siswa extends Model
         return $this->hasOne(Presensi::class, 'presensi_id');
     }
 
-    public function role(): HasOne
+    public function role()
     {
-        return $this->hasOne(Role::class, 'pembina_id', 'id');
+        return $this->belongsTo(Role::class, 'role_id');
     }
 }

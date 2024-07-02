@@ -28,7 +28,7 @@ class LoginRequest extends FormRequest
     {
         return [
             'email' => ['required', 'string', 'email'],
-            'password' => ['required', 'string'],
+            'password' => 'required|string|min:8',
         ];
     }
 
@@ -41,15 +41,19 @@ class LoginRequest extends FormRequest
     {
         $this->ensureIsNotRateLimited();
 
-        if (! Auth::attempt($this->only('email', 'password'), $this->boolean('remember'))) {
-            RateLimiter::hit($this->throttleKey());
+        $credentials = $this->only('email', 'password');
 
+        if (! Auth::guard('web')->attempt($credentials) &&
+            ! Auth::guard('pembina')->attempt($credentials) &&
+            ! Auth::guard('siswa')->attempt($credentials)) {
+            $this->rateLimitHit();
+            
             throw ValidationException::withMessages([
-                'email' => trans('auth.failed'),
+                'email' => __('auth.failed'),
             ]);
         }
 
-        RateLimiter::clear($this->throttleKey());
+        $this->rateLimitClear();
     }
 
     /**
