@@ -22,7 +22,7 @@ class JurusanController extends Controller
      */
     public function create()
     {
-        return view('jurusan.create');
+        return view('admin.createjurusan');
     }
 
     /**
@@ -34,7 +34,7 @@ class JurusanController extends Controller
         $jurusan->name = $request->name;
         
         $jurusan->save();
-
+    
         return redirect()->route('jurusan.index');
     }
 
@@ -51,7 +51,7 @@ class JurusanController extends Controller
      */
     public function edit(Jurusan $jurusan)
     {
-        return view("jurusan.edit", [
+        return view("admin.editjurusan", [
             "jurusan" => $jurusan
         ]);
     }
@@ -63,7 +63,7 @@ class JurusanController extends Controller
     {
         $jurusan->name = $request->name;
         $jurusan->save();
-
+    
         return redirect()->route('jurusan.index')->with(['success' => 'Data Berhasil Diupdate']);
     }
 

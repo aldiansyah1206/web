@@ -16,12 +16,14 @@ return new class extends Migration
             $table->string('name')->unique();
             $table->string('email')->unique();
             $table->string('password');
+            $table->unsignedBigInteger('kegiatan_id');
             $table->enum('jenis_kelamin', ["p", "l"]);
             $table->string('no_hp')->nullable();
             $table->string('image')->nullable();
             $table->string('alamat');
             $table->rememberToken();
             $table->timestamps();
+            $table->foreign('kegiatan_id')->references('id')->on('kegiatan')->onDelete('cascade');
         });
     }
 

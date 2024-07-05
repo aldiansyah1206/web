@@ -17,6 +17,7 @@
                                     <th scope="col">Email</th> 
                                     <th scope="col">Role</th>
                                     <th scope="col">Jenis Kelamin</th>
+                                    <th scope="col">Kegiatan</th>
                                     <th scope="col">No Hp</th>
                                     <th scope="col">Image</th>
                                     <th scope="col">Alamat</th>
@@ -33,8 +34,13 @@
                                                     <td>{{ $no }}</td>
                                                     <td>{{ $p->name}}</td>
                                                     <td>{{ $p->email ? $p->email : '-' }}</td>
-                                                    <td>{{ $p->role?->name?? '-' }}</td>
+                                                    <td>
+                                                        @foreach ($p->roles as $role)
+                                                            {{ $role->name }}
+                                                        @endforeach
+                                                    </td>
                                                     <td>{{ $p->jenis_kelamin }}</td>
+                                                    <td>{{ $p->kegiatan->name }}</td>
                                                     <td>{{ $p->no_hp ? $p->no_hp: '-' }}</td>
                                                     <td><img src="{{ asset('images/' . $p->image) }}" alt="Gambar" width="50"></td>
                                                     <td>{{ $p->alamat ? $p->alamat : '-' }}</td>

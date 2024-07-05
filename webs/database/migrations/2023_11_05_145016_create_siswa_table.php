@@ -18,13 +18,15 @@ return new class extends Migration
             $table->string('password');
             $table->unsignedBigInteger('kelas_id');
             $table->unsignedBigInteger('jurusan_id');
+            $table->unsignedBigInteger('kegiatan_id');
             $table->string('no_hp');
             $table->text('alamat');
             $table->enum('jenis_kelamin', ["p", "l"]);
             $table->rememberToken();
             $table->timestamps();
-            $table->foreign('jurusan_id')->references('id')->on('jurusan');
-            $table->foreign('kelas_id')->references('id')->on('kelas');
+            $table->foreign('kelas_id')->references('id')->on('kelas')->onDelete('cascade');
+            $table->foreign('jurusan_id')->references('id')->on('jurusan')->onDelete('cascade');
+            $table->foreign('kegiatan_id')->references('id')->on('kegiatan')->onDelete('cascade');
         });
     }
     /**

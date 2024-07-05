@@ -23,7 +23,7 @@ class KelasController extends Controller
     public function create()
     {
         
-        return view('kelas.create');
+        return view('admin.createkelas');
     }
     
     /**
@@ -51,7 +51,7 @@ class KelasController extends Controller
      */
     public function edit(Kelas $kelas)
     {
-        return view("kelas.edit", [
+        return view("admin.editkelas", [
             "kelas" => $kelas,
         ]);
     }

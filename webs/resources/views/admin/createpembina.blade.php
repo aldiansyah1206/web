@@ -24,7 +24,7 @@
                             <input type="text" class="form-control" id="name" name="name" value="{{ old('name') }}" required>
                         </div>
                         
-                        <div class="col-md-6 p-3">
+                        <div class="col-md-12 p-3">
                             <label for="email">Email</label>
                             <input type="email" class="form-control" id="email" name="email" value="{{ old('email') }}" required>
                         </div>
@@ -47,7 +47,15 @@
                                 <option value="l" {{ old('jenis_kelamin') == 'l' ? 'selected' : '' }}>Laki-laki</option>
                             </select>
                         </div>
-                        
+                        <div class="col-md-6 p-3">
+                            <label for="kegiatan">Kegiatan</label>
+                            <select class="form-control" id="kegiatan_id" name="kegiatan_id" required>
+                                <option value="">Pilih Kegiatan </option>
+                                @foreach ($kegiatan as $keg)
+                                    <option value="{{ $keg->id }}">{{ $keg->name }}</option>
+                                @endforeach
+                            </select>
+                        </div>
                         <div class="col-md-6 p-3">
                             <label for="no_hp">No HP</label>
                             <input type="text" class="form-control" id="no_hp" name="no_hp" value="{{ old('no_hp') }}">

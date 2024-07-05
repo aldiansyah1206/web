@@ -7,18 +7,19 @@ use Illuminate\Database\Eloquent\Model;
 
 class Kegiatan extends Model
 {
-    protected $table = 'kegiatan';
-    
     use HasFactory;
+    
+    protected $table = 'kegiatan';
     
     protected $fillable = [
         'nama',
         'deskripsi',
     ];
 
+   
     public function pembina()
     {
-        return $this->belongsTo(Pembina::class, 'pembina_id');
+        return $this->hasMany(Pembina::class, 'kegiatan_id');
     }
     public function siswa()
     {

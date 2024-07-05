@@ -26,7 +26,7 @@ class KegiatanController extends Controller
     public function create()
     {
 
-        return view('kegiatan.create');
+        return view('admin.createkegiatan');
     }
 
     /**
@@ -35,10 +35,14 @@ class KegiatanController extends Controller
     public function store(Request $request)
     {
         $kegiatan = new Kegiatan;
-        $kegiatan->name= $request->nama;
+        $kegiatan->name = $request->name;
+        $kegiatan->deskripsi = $request->deskripsi;
+        
         $kegiatan->save();
-        return redirect()->route('kegiatan.index');
+
+        return redirect()->route('kegiatan.index')->with('success', 'Kegiatan berhasil ditambahkan.');
     }
+    
 
     /**
      * Display the specified resource.

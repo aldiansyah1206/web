@@ -3,15 +3,15 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Spatie\Permission\Traits\HasRoles;
 
-class Pembina extends Authenticatable
+class Pembina extends Model
 {
-    use HasFactory, HasRoles;
+    use HasRoles,HasFactory;
 
     protected $table = 'pembina';
-    protected $guarded = [];
     protected $guard_name = 'pembina';
 
     protected $fillable = [
@@ -19,6 +19,7 @@ class Pembina extends Authenticatable
         'email',
         'password',
         'no_hp',
+        'kegiatan_id',
         'jenis_kelamin',
         'image',
         'alamat',
@@ -32,4 +33,9 @@ class Pembina extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+    
+    public function kegiatan()
+    {
+        return $this->belongsTo(Kegiatan::class, 'kegiatan_id');
+    }
 }

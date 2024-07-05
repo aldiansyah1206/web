@@ -79,16 +79,12 @@ Route::middleware('auth')->group(function () {
 
 Route::resource('jurusan', JurusanController::class)->only(['index', 'create', 'store', 'edit', 'update', 'destroy']);
 
-Route::resource('kelas', KelasController::class)->only(['index', 'create', 'store', 'edit', 'update', 'destroy']);
+Route::resource('kelas', KelasController::class)->parameters(['kelas' => 'kelas']);
 
 Route::resource('kegiatan', KegiatanController::class)->only(['index', 'create', 'store', 'edit', 'update', 'destroy']);
 
 Route::resource('pembina', PembinaController::class)->only(['index', 'create', 'store', 'edit', 'update', 'destroy']);
 
 Route::resource('siswa', SiswaController::class)->only(['index', 'create', 'store', 'edit', 'update', 'destroy']);
-
-Route::middleware(['auth:pembina'])->group(function () {
-    
-});
 
 require __DIR__.'/auth.php';

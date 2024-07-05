@@ -28,17 +28,22 @@
                                 <input type="text"  name="email"  class="form-control" required>
                         </div>
                         <div class="col-md-12 p-3">
-                            <div class="form-group" >
-                                <label for="password" class="form-label">Password</label>
-                                <x-text-input id="password" placeholder="Password" class="form-control form-control-user"
-                                                type="password" name="password" required autocomplete="current-password"/>
-                                <x-input-error :messages="$errors->get('password')" class="mt-2" />
-                            </div>
+                            <label for="password">Password</label>
+                            <input type="password" class="form-control" id="password" name="password" required>
+                        </div>
+
+                        <div class="col-md-6 p-3">
+                            <label for="password_confirmation">Confirm Password</label>
+                            <input type="password" class="form-control" id="password_confirmation" name="password_confirmation" required>
                         </div>
                         <br>
                         <div class="col-md-6 p-3">
                             <label for="no_hp" class="form-label">No Hp</label>
                             <input type="text"  name="no_hp"  class="form-control" required>
+                        </div>
+                        <div class="col-md-6 p-3">
+                            <label for="image">Image</label>
+                            <input type="file" class="form-control" id="image" name="image">
                         </div>
                         <br>
                         <div class="col-md-6 p-3">
@@ -67,14 +72,23 @@
                             </select>
                         </div>
                         <br>
-                        <div class="col-md-12 p-3">
+                        <div class="col-md-6 p-3">
+                            <label for="kegiatan">Kegiatan</label>
+                            <select class="form-control" id="kegiatan_id" name="kegiatan_id" required>
+                                @foreach ($kegiatan as $keg)
+                                    <option value="">Pilih Kegiatan </option>
+                                    <option value="{{ $keg->id }}">{{ $keg->name }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <br>
+                        <div class="col-md-12  p-3">
                                 <label for="alamat" class="form-label">Alamat</label>
                                 <textarea class="form-control" placeholder="Masukkan Alamat"  name="alamat" id="floatingTextarea2" style="height: 100px"></textarea>
                         </div>
                         <div class="col-md-12 p-3">
-                                <input type="hidden">
-                                <button class="btn-success" type="submit">Tambah</button>
-                                <a href="{{'/siswa'}}" class="btn btn-danger  btn-sm">Batal</a>
+                            <button class="btn btn-success" type="submit">Tambah</button>
+                            <a href="{{ route('siswa.index') }}" class="btn btn-danger">Batal</a>
                         </div>
                     </form>
                 </div>

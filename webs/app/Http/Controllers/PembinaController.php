@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Kegiatan;
 use App\Models\Pembina;
 use Spatie\Permission\Models\Role;
 use Illuminate\Http\Request;
@@ -14,12 +15,14 @@ class PembinaController extends Controller
      */
     public function countpembinadata()
     {
-        $pembina = Pembina::orderBy('name')->paginate(10);
-        return view('pembina.index', compact('pembina'));
+        $pembina = Pembina::orderBy('name')->paginate(7);
+        $pembina = Pembina::with(["kegiatan"])->orderBy('name')->paginate(7);
+        return view('pembina.index', compact('pembina','kegiatan'));
     }
         public function index()
-    {
-        $pembina = Pembina::orderBy('name')->paginate(10);
+    {   
+        $pembina = Pembina::with('kegiatan')->orderBy('name')->paginate(7);
+        $kegiatan = Kegiatan::All();
         return view('pembina.index', compact('pembina'));
     }
 
@@ -30,7 +33,9 @@ class PembinaController extends Controller
     {
         $roleIds = [2]; 
         $roles = Role::findMany($roleIds);
-        return view('admin.createpembina' ,compact('roles'));
+        $pembina = Pembina::with('kegiatan')->orderBy('name');
+        $kegiatan = Kegiatan::All();
+        return view('admin.createpembina' ,compact('roles','kegiatan'));
     }   
 
     /**
@@ -44,6 +49,7 @@ class PembinaController extends Controller
                 'email' => 'required|string|email|max:255|unique:pembina,email',
                 'password' => 'required|string|min:8|confirmed',
                 'jenis_kelamin' => 'required|string|max:10',
+                'kegiatan_id' => 'required|exists:kegiatan,id',
                 'no_hp' => 'nullable|string|max:15',
                 'alamat' => 'required|string|max:255',
                 'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
@@ -55,6 +61,7 @@ class PembinaController extends Controller
             $pembina->email = $request->email;
             $pembina->password = Hash::make($request->password);
             $pembina->jenis_kelamin = $request->jenis_kelamin;
+            $pembina->kegiatan_id = $request->kegiatan_id;
             $pembina->no_hp = $request->no_hp;
             $pembina->alamat = $request->alamat;
 
@@ -89,9 +96,8 @@ class PembinaController extends Controller
      */
     public function edit(Pembina $pembina)
     {
-        return view("pembina.edit", [
-            "pembina" => $pembina
-        ]);
+        $kegiatan = Kegiatan::all();
+        return view("pembina.edit",compact('kegiatan'));
     }
 
     /**
