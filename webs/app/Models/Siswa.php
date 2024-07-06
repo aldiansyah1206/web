@@ -11,8 +11,8 @@ class Siswa extends  Authenticatable
     use HasFactory, HasRoles;
 
     protected $table = 'siswa';
-    
-    use HasFactory;
+
+    protected $guard_name = 'siswa';
 
     protected $fillable = [
     "name",
@@ -30,6 +30,10 @@ class Siswa extends  Authenticatable
     protected $hidden = [
         'password',
         'remember_token',
+    ];
+    
+    protected $casts = [
+        'email_verified_at' => 'datetime',
     ];
     
     public function kelas()

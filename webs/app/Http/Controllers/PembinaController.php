@@ -88,16 +88,19 @@ class PembinaController extends Controller
      */
     public function show(Pembina $pembina)
     {
-        //
+        {
+            return view('pembina.profil');
+        }
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Pembina $pembina)
+    public function edit($id)
     {
+        $pembina = Pembina::findOrFail($id);
         $kegiatan = Kegiatan::all();
-        return view("pembina.edit",compact('kegiatan'));
+        return view("admin.editpembina", compact('pembina', 'kegiatan'));
     }
 
     /**
@@ -105,15 +108,27 @@ class PembinaController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'email' => 'required|string|email|max:255|unique:pembina,email,' . $id,
+            'jenis_kelamin' => 'required',
+            'kegiatan_id' => 'required|exists:kegiatan,id',
+            'no_hp' => 'nullable|string|max:15',
+            'alamat' => 'required|string|max:255',
+        ]);
+    
         $pembina = Pembina::find($id);
         $pembina->name = $request->name;
         $pembina->email = $request->email;
-        $pembina->password = $request->password;
+        $pembina->jenis_kelamin = $request->jenis_kelamin;
+        $pembina->kegiatan_id = $request->kegiatan_id;
         $pembina->no_hp = $request->no_hp;
         $pembina->alamat = $request->alamat;
         $pembina->save();
-        return redirect()->route('pembina.index');
+    
+        return redirect()->route('pembina.index')->with('success', 'Update Data Pembina Berhasil');
     }
+    
 
     /**
      * Remove the specified resource from storage.

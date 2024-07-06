@@ -7,15 +7,16 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Spatie\Permission\Traits\HasRoles;
 
-class Pembina extends Model
+class Pembina extends Authenticatable 
 {
     use HasRoles,HasFactory;
 
     protected $table = 'pembina';
+    
     protected $guard_name = 'pembina';
 
     protected $fillable = [
-        'nama',
+        'name',
         'email',
         'password',
         'no_hp',

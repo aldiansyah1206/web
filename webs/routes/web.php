@@ -33,6 +33,10 @@ Route::get('/logout', function () {
 Route::get('siswa/profil', function () {
     return view('siswa/profil');
 });
+// profil pembina
+Route::get('pembina/profil', function () {
+    return view('pembina/profil');
+});
 
 // dashboard
 Route::middleware(['auth:siswa'])->group(function () {

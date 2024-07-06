@@ -19,9 +19,10 @@ return new class extends Migration
             $table->unsignedBigInteger('kelas_id');
             $table->unsignedBigInteger('jurusan_id');
             $table->unsignedBigInteger('kegiatan_id');
-            $table->string('no_hp');
-            $table->text('alamat');
             $table->enum('jenis_kelamin', ["p", "l"]);
+            $table->string('no_hp');
+            $table->string('image')->nullable();
+            $table->text('alamat');
             $table->rememberToken();
             $table->timestamps();
             $table->foreign('kelas_id')->references('id')->on('kelas')->onDelete('cascade');
